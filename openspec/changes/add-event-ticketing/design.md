@@ -1,6 +1,6 @@
 ## Context
 
-Emanuel Gather is a greenfield Next.js 16 / React 19 app (see `AGENTS.md` — this is a modified Next.js; read `node_modules/next/dist/docs/` before writing framework code). There is no database yet. This change introduces the first persistent backend (Supabase: Postgres + Auth + RLS) and the first money-handling path.
+Emanuel Tickets is a greenfield Next.js 16 / React 19 app (see `AGENTS.md` — this is a modified Next.js; read `node_modules/next/dist/docs/` before writing framework code). There is no database yet. This change introduces the first persistent backend (Supabase: Postgres + Auth + RLS) and the first money-handling path.
 
 The hard constraints are correctness under concurrency and at-least-once delivery, not features:
 - Two buyers racing for the last seat must not both succeed.

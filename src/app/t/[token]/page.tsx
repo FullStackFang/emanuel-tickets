@@ -17,7 +17,7 @@ import {
 export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
-  title: 'Your ticket · Emanuel Gather',
+  title: 'Your ticket · Emanuel Tickets',
   robots: { index: false, follow: false },
 }
 

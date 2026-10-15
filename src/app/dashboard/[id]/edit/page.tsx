@@ -8,7 +8,7 @@ import { nyInputParts } from '@/lib/event-format'
 import { NO_LIMIT } from '@/lib/event-input'
 import { updateEvent } from './actions'
 
-export const metadata: Metadata = { title: 'Edit event · Emanuel Gather' }
+export const metadata: Metadata = { title: 'Edit event · Emanuel Tickets' }
 export const dynamic = 'force-dynamic' // a host's own draft/published event is live
 
 type EditRow = {

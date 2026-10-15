@@ -1,4 +1,4 @@
-# DESIGN.md — Emanuel Gather
+# DESIGN.md — Emanuel Tickets
 
 The visual language is already implemented as tokens in `src/app/tokens.css` (single source of truth) and bound into Tailwind v4 via `@theme inline` in `src/app/globals.css`. This doc summarizes intent; the tokens are authoritative.
 

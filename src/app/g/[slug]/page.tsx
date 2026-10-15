@@ -15,9 +15,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params
   const group = await getEventGroup(slug)
-  if (!group) return { title: 'Not found · Emanuel Gather' }
+  if (!group) return { title: 'Not found · Emanuel Tickets' }
   return {
-    title: `${group.name} · Emanuel Gather`,
+    title: `${group.name} · Emanuel Tickets`,
     description: group.tagline ?? group.blurb ?? undefined,
   }
 }

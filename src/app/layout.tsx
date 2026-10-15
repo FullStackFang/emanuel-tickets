@@ -25,7 +25,7 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Emanuel Gather",
+  title: "Emanuel Tickets",
   description: "Events and ticketing, minimal and frictionless.",
 };
 

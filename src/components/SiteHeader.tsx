@@ -24,7 +24,7 @@ export async function SiteHeader({ wide = false }: { wide?: boolean }) {
             href="/"
             className="font-display text-xl font-semibold tracking-tight text-[var(--text-primary)]"
           >
-            Emanuel <span className="text-[var(--text-brand)]">Gather</span>
+            Emanuel <span className="text-[var(--text-brand)]">Tickets</span>
           </Link>
 
           {profile ? (

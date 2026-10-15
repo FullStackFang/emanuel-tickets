@@ -40,7 +40,7 @@ export default function LoginPage() {
           <RoseSpinner size={88} label="" />
         </div>
 
-        <h1 className="login-title">Emanuel Gather</h1>
+        <h1 className="login-title">Emanuel Tickets</h1>
         <p className="login-subtitle">Host sign in</p>
 
         {hasError && (

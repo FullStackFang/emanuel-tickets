@@ -23,9 +23,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { id } = await params
   const event = await getEvent(id)
-  if (!event) return { title: 'Event not found · Emanuel Gather' }
+  if (!event) return { title: 'Event not found · Emanuel Tickets' }
   return {
-    title: `${event.title} · Emanuel Gather`,
+    title: `${event.title} · Emanuel Tickets`,
     description: event.description ?? undefined,
   }
 }

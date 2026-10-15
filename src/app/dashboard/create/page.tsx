@@ -5,7 +5,7 @@ import { SiteHeader } from '@/components/SiteHeader'
 import { createClient } from '@/lib/supabase/server'
 import { CreateEventForm } from './CreateEventForm'
 
-export const metadata: Metadata = { title: 'Create event · Emanuel Gather' }
+export const metadata: Metadata = { title: 'Create event · Emanuel Tickets' }
 
 export default async function CreateEventPage() {
   const supabase = await createClient()

@@ -13,7 +13,7 @@ import { signOut } from '@/app/actions/auth'
 export const dynamic = 'force-dynamic' // reflects the signed-in host
 
 export const metadata: Metadata = {
-  title: 'Profile & settings · Emanuel Gather',
+  title: 'Profile & settings · Emanuel Tickets',
 }
 
 export default async function SettingsPage() {
@@ -41,7 +41,7 @@ export default async function SettingsPage() {
             Profile &amp; settings
           </h1>
           <p className="mt-1 text-sm text-[var(--text-secondary)]">
-            Manage how you show up as a host and what Gather emails you.
+            Manage how you show up as a host and what Emanuel Tickets emails you.
           </p>
         </header>
 
@@ -105,7 +105,7 @@ export default async function SettingsPage() {
             </div>
           )}
           <p className="mt-3 text-[13px] text-[var(--text-tertiary)]">
-            Your password and two-step verification are managed by Microsoft. Gather never sees them.
+            Your password and two-step verification are managed by Microsoft. Emanuel Tickets never sees them.
           </p>
 
           <form action={signOut} className="mt-5">
@@ -125,7 +125,7 @@ export default async function SettingsPage() {
         {/* Leaving */}
         <Section eyebrow="Leaving" heading="Remove host access" danger>
           <p className="mb-4 max-w-[52ch] text-[13.5px] text-[var(--text-secondary)]">
-            Your access to Gather comes from your Temple Emanuel Microsoft account. To fully remove
+            Your access to Emanuel Tickets comes from your Temple Emanuel Microsoft account. To fully remove
             your host access, ask an administrator to remove you in Microsoft 365. You can sign out
             of every device below.
           </p>

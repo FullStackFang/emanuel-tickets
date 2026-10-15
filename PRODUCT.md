@@ -1,4 +1,4 @@
-# PRODUCT.md — Emanuel Gather
+# PRODUCT.md — Emanuel Tickets
 
 register: product
 

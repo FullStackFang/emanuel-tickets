@@ -1,6 +1,6 @@
 ## Why
 
-Emanuel Gather needs to turn events into something people can actually sign up for. Today the app can display an event but cannot sell or reserve a finite number of seats, take payment reliably, let a host manage their own event, or show who is coming. Ticketing is the last piece before the product is usable end-to-end, and the risky parts (never overselling, never double-charging, never leaking one host's attendee list to another) are exactly the parts that must be specified before code is written.
+Emanuel Tickets needs to turn events into something people can actually sign up for. Today the app can display an event but cannot sell or reserve a finite number of seats, take payment reliably, let a host manage their own event, or show who is coming. Ticketing is the last piece before the product is usable end-to-end, and the risky parts (never overselling, never double-charging, never leaking one host's attendee list to another) are exactly the parts that must be specified before code is written.
 
 ## What Changes
 
