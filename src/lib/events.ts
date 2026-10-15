@@ -8,7 +8,7 @@ import type { EventGroup, EventRecord } from '@/lib/event-format'
 export * from '@/lib/event-format'
 
 const SELECT =
-  'id,title,description,location,starts_at,status,category,group_slug,ticket_types(id,name,price_cents,capacity,sold,held)'
+  'id,title,description,location,starts_at,status,category,group_slug,ticket_types(id,name,price_cents,member_price_cents,members_only,capacity,sold,held)'
 
 export async function getPublishedEvents(): Promise<EventRecord[]> {
   const supabase = await createClient()

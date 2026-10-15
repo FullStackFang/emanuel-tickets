@@ -8,6 +8,7 @@ import { NotificationSettings } from '@/components/settings/NotificationSettings
 import { DangerZone } from '@/components/settings/DangerZone'
 import { createClient } from '@/lib/supabase/server'
 import { hostProfileFrom } from '@/lib/host'
+import { requireHost } from '@/lib/supabase/viewer'
 import { signOut } from '@/app/actions/auth'
 
 export const dynamic = 'force-dynamic' // reflects the signed-in host
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
 }
 
 export default async function SettingsPage() {
+  await requireHost()
   const supabase = await createClient()
   const {
     data: { user },

@@ -9,6 +9,7 @@ Events and ticketing for Temple Emanuel. Congregants discover upcoming events an
 ## Users
 
 - **Attendees / congregants** — all ages, mostly on phones, non-technical. They arrive from a shared link or the events home, deciding whether to attend. They check out as guests (email only), so legibility, trust, and a frictionless RSVP/purchase matter more than power features. Assume some older users: generous type, high contrast, obvious tap targets.
+- **Members** — congregants whose dues are current in the temple's CRM. Same people and same phones as attendees, so the same care applies. They can sign in with just their email (a 6-digit code, no password) to get member prices and members-only tickets. Signing in is an offer made in place on the event page, never a gate; guests keep the no-account path. If their email doesn't match a membership, they're pointed to the office rather than asked to prove who they are.
 - **Hosts** — temple staff, clergy, and admins. Sign in with Microsoft (Azure Entra, single-tenant). Mostly at a desktop, setting up events ahead of time and checking attendance. They value clarity and speed over density; they are not power analysts.
 
 ## Brand

@@ -1,0 +1,243 @@
+- generic [active] [ref=f10e1]:
+  - generic [ref=f10e2]:
+    - region "Skip to main content":
+      - link "Skip to main content" [ref=f10e3] [cursor=pointer]:
+        - /url: "#__docusaurus_skipToContent_fallback"
+    - navigation "Main" [ref=f10e4]:
+      - generic [ref=f10e5]:
+        - generic [ref=f10e6]:
+          - link "Chargent Logo Chargent" [ref=f10e7] [cursor=pointer]:
+            - /url: /
+            - img "Chargent Logo" [ref=f10e9]
+            - generic [ref=f10e10]: Chargent
+          - link "Docs" [ref=f10e11] [cursor=pointer]:
+            - /url: /docs/docs/introduction
+          - link "REST" [ref=f10e12] [cursor=pointer]:
+            - /url: /docs/rest/introduction
+          - link "Flow" [ref=f10e13] [cursor=pointer]:
+            - /url: /docs/flow/introduction
+          - link "Apex" [ref=f10e14] [cursor=pointer]:
+            - /url: /docs/apex/introduction
+          - link "Custom Checkout" [ref=f10e15] [cursor=pointer]:
+            - /url: /docs/ccc/introduction
+          - link "Smart Payment Routing" [ref=f10e16] [cursor=pointer]:
+            - /url: /docs/spr/introduction
+        - button "Switch between dark and light mode (currently light mode)" [ref=f10e19] [cursor=pointer]
+    - generic [ref=f10e24]:
+      - complementary [ref=f10e25]:
+        - navigation "Docs sidebar" [ref=f10e28]:
+          - list [ref=f10e29]:
+            - listitem [ref=f10e30]:
+              - link "Introduction" [ref=f10e31] [cursor=pointer]:
+                - /url: /docs/rest/introduction
+            - listitem [ref=f10e32]:
+              - link "Getting Started" [ref=f10e34] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f10e35]:
+              - link "Chargent Orders" [ref=f10e37] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f10e38]:
+              - link "Payment Methods" [ref=f10e40] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f10e41]:
+              - link "Chargent Transactions" [ref=f10e43] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f10e44]:
+              - link "Payment Request" [ref=f10e45] [cursor=pointer]:
+                - /url: /docs/rest/payment-request
+      - main [ref=f10e46]:
+        - generic [ref=f10e48]:
+          - generic [ref=f10e50]:
+            - article [ref=f10e51]:
+              - navigation "Breadcrumbs" [ref=f10e52]:
+                - list [ref=f10e53]:
+                  - listitem [ref=f10e54]:
+                    - link "Home page" [ref=f10e55] [cursor=pointer]:
+                      - /url: /
+                  - listitem [ref=f10e58]:
+                    - generic [ref=f10e59]: Payment Request
+              - generic [ref=f10e60]:
+                - heading "Payment Request" [level=1] [ref=f10e61]
+                - heading [level=2] [ref=f10e62]:
+                  - text: Overview
+                  - link "Direct link to Overview" [ref=f10e63] [cursor=pointer]:
+                    - /url: "#overview"
+                    - text: "#"
+                - paragraph [ref=f10e64]: Payment Request creates a payment link that may be emailed to your customers for taking a payment on a Chargent Order.
+                - heading [level=3] [ref=f10e65]:
+                  - text: Prerequisites
+                  - link "Direct link to Prerequisites" [ref=f10e66] [cursor=pointer]:
+                    - /url: "#prerequisites"
+                    - text: "#"
+                - paragraph [ref=f10e67]: There are multiple prerequisite resources that must be created before creating a Payment Request.
+                - table [ref=f10e68]:
+                  - rowgroup [ref=f10e69]:
+                    - row [ref=f10e70]:
+                      - columnheader "Object" [ref=f10e71]
+                      - columnheader "Definition" [ref=f10e72]
+                  - rowgroup [ref=f10e73]:
+                    - row [ref=f10e74]:
+                      - cell "Contact" [ref=f10e75]
+                      - cell "Salesforce standard Contact object." [ref=f10e76]
+                    - row [ref=f10e77]:
+                      - cell [ref=f10e78]:
+                        - link "Chargent Order" [ref=f10e79] [cursor=pointer]:
+                          - /url: https://appfrontier.com/documentation/chargent-order-fields
+                      - cell "Chargent Orders are central objects to payments lifecycle management." [ref=f10e80]
+                - heading [level=2] [ref=f10e81]:
+                  - text: Create Payment Request
+                  - link "Direct link to Create Payment Request" [ref=f10e82] [cursor=pointer]:
+                    - /url: "#create-payment-request"
+                    - text: "#"
+                - heading [level=3] [ref=f10e83]:
+                  - text: Resource URL
+                  - link "Direct link to Resource URL" [ref=f10e84] [cursor=pointer]:
+                    - /url: "#resource-url"
+                    - text: "#"
+                - table [ref=f10e85]:
+                  - rowgroup [ref=f10e86]:
+                    - row [ref=f10e87]:
+                      - columnheader "HTTP Request" [ref=f10e88]
+                      - columnheader "URL" [ref=f10e89]
+                  - rowgroup [ref=f10e90]:
+                    - row [ref=f10e91]:
+                      - cell "POST" [ref=f10e92]
+                      - cell [ref=f10e93]:
+                        - code [ref=f10e94]: "/services/data/v{{version}}/sobjects/ChargentOrders__Payment_Request__c/"
+                - heading [level=3] [ref=f10e95]:
+                  - text: Request
+                  - link "Direct link to Request" [ref=f10e96] [cursor=pointer]:
+                    - /url: "#request"
+                    - text: "#"
+                - generic [ref=f10e97]:
+                  - generic [ref=f10e98]: JSON Example
+                  - generic [ref=f10e99]:
+                    - code [ref=f10e101]:
+                      - generic [ref=f10e102]: "{"
+                      - generic [ref=f10e103]: "\"ChargentOrders__Billing_Contact__c\": \"{{contactId}}\","
+                      - generic [ref=f10e104]: "\"ChargentOrders__ChargentOrder__c\" : \"{{orderId}}\","
+                      - generic [ref=f10e105]: "\"ChargentOrders__Send_Payment_Request_Email__c\" : true"
+                      - generic [ref=f10e106]: "}"
+                    - button "Copy code to clipboard" [ref=f10e108] [cursor=pointer]
+                - heading [level=3] [ref=f10e114]:
+                  - text: Response
+                  - link "Direct link to Response" [ref=f10e115] [cursor=pointer]:
+                    - /url: "#response"
+                    - text: "#"
+                - generic [ref=f10e116]:
+                  - generic [ref=f10e117]: JSON Example
+                  - generic [ref=f10e118]:
+                    - code [ref=f10e120]:
+                      - generic [ref=f10e121]: "{"
+                      - generic [ref=f10e122]: "\"id\": \"{{paymentRequestId}}\","
+                      - generic [ref=f10e123]: "\"success\": true,"
+                      - generic [ref=f10e124]: "\"errors\": []"
+                      - generic [ref=f10e125]: "}"
+                    - button "Copy code to clipboard" [ref=f10e127] [cursor=pointer]
+                - heading [level=2] [ref=f10e133]:
+                  - text: JSForce Example
+                  - link "Direct link to JSForce Example" [ref=f10e134] [cursor=pointer]:
+                    - /url: "#jsforce-example"
+                    - text: "#"
+                - generic [ref=f10e135]:
+                  - generic [ref=f10e136]: Node.js Example
+                  - generic [ref=f10e137]:
+                    - code [ref=f10e139]:
+                      - generic [ref=f10e140]: "function createChargentOrder(conn, contactId, orderId) {"
+                      - generic [ref=f10e142]: "const relativeUrl = \"/services/data/v{{version}}/sobjects/ChargentOrders__Payment_Request__c/\""
+                      - generic [ref=f10e143]: "var chargentOrder = {"
+                      - generic [ref=f10e144]: "ChargentOrders__Billing_Contact__c: contactId,"
+                      - generic [ref=f10e145]: "ChargentOrders__ChargentOrder__c: orderId,"
+                      - generic [ref=f10e146]: "ChargentOrders__ChargentOrders__Send_Payment_Request_Email__c: true,"
+                      - generic [ref=f10e147]: "}"
+                      - generic [ref=f10e148]: console.log(JSON.stringify(chargentOrder))
+                      - generic [ref=f10e149]: "return new Promise((resolve, reject) => {"
+                      - generic [ref=f10e150]: "conn.request({"
+                      - generic [ref=f10e151]: "method: 'POST',"
+                      - generic [ref=f10e152]: "url: relativeUrl,"
+                      - generic [ref=f10e153]: "body: JSON.stringify(chargentOrder),"
+                      - generic [ref=f10e154]: "headers: { 'Content-Type': 'application/json' }"
+                      - generic [ref=f10e155]: "}, function(error, result) {"
+                      - generic [ref=f10e156]: "if (error) {"
+                      - generic [ref=f10e157]: reject(error)
+                      - generic [ref=f10e158]: "} else {"
+                      - generic [ref=f10e159]: resolve(result)
+                      - generic [ref=f10e160]: "}"
+                      - generic [ref=f10e161]: "})"
+                      - generic [ref=f10e162]: "})"
+                      - generic [ref=f10e163]: "}"
+                      - generic [ref=f10e164]: module.exports = createChargentOrder
+                    - button "Copy code to clipboard" [ref=f10e166] [cursor=pointer]
+                - heading [level=2] [ref=f10e172]:
+                  - text: Learn More
+                  - link "Direct link to Learn More" [ref=f10e173] [cursor=pointer]:
+                    - /url: "#learn-more"
+                    - text: "#"
+                - paragraph [ref=f10e174]:
+                  - text: Learn more about
+                  - link "Payment Request Setup" [ref=f10e175] [cursor=pointer]:
+                    - /url: https://appfrontier.com/documentation/payment-request-setup
+                  - text: .
+            - navigation "Docs pages" [ref=f10e176]:
+              - link "Previous « Payment Refund" [ref=f10e177] [cursor=pointer]:
+                - /url: /docs/rest/payment-refund
+                - generic [ref=f10e178]: Previous
+                - generic [ref=f10e179]: « Payment Refund
+          - list [ref=f10e182]:
+            - listitem [ref=f10e183]:
+              - link "Overview" [ref=f10e184] [cursor=pointer]:
+                - /url: "#overview"
+              - list [ref=f10e185]:
+                - listitem [ref=f10e186]:
+                  - link "Prerequisites" [ref=f10e187] [cursor=pointer]:
+                    - /url: "#prerequisites"
+            - listitem [ref=f10e188]:
+              - link "Create Payment Request" [ref=f10e189] [cursor=pointer]:
+                - /url: "#create-payment-request"
+              - list [ref=f10e190]:
+                - listitem [ref=f10e191]:
+                  - link "Resource URL" [ref=f10e192] [cursor=pointer]:
+                    - /url: "#resource-url"
+                - listitem [ref=f10e193]:
+                  - link "Request" [ref=f10e194] [cursor=pointer]:
+                    - /url: "#request"
+                - listitem [ref=f10e195]:
+                  - link "Response" [ref=f10e196] [cursor=pointer]:
+                    - /url: "#response"
+            - listitem [ref=f10e197]:
+              - link "JSForce Example" [ref=f10e198] [cursor=pointer]:
+                - /url: "#jsforce-example"
+            - listitem [ref=f10e199]:
+              - link "Learn More" [ref=f10e200] [cursor=pointer]:
+                - /url: "#learn-more"
+    - contentinfo [ref=f10e201]:
+      - generic [ref=f10e202]:
+        - generic [ref=f10e203]:
+          - generic [ref=f10e204]:
+            - generic [ref=f10e205]: Docs
+            - list [ref=f10e206]:
+              - listitem [ref=f10e207]:
+                - link "Getting Started" [ref=f10e208] [cursor=pointer]:
+                  - /url: /docs/docs/getting-started
+          - generic [ref=f10e209]:
+            - generic [ref=f10e210]: Community
+            - list [ref=f10e211]:
+              - listitem [ref=f10e212]:
+                - link "Knowledge Base" [ref=f10e213] [cursor=pointer]:
+                  - /url: https://appfrontier.my.site.com/kb/s/
+              - listitem [ref=f10e216]:
+                - link "Reviews" [ref=f10e217] [cursor=pointer]:
+                  - /url: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N300000016jrcEAA&tab=r
+          - generic [ref=f10e220]:
+            - generic [ref=f10e221]: More
+            - list [ref=f10e222]:
+              - listitem [ref=f10e223]:
+                - link "Website" [ref=f10e224] [cursor=pointer]:
+                  - /url: https://appfrontier.com/
+              - listitem [ref=f10e227]:
+                - link "Product Docs" [ref=f10e228] [cursor=pointer]:
+                  - /url: https://appfrontier.com/documentation
+        - generic [ref=f10e231]: Copyright © 2024 AppFrontier, LLC.
+  - generic [ref=f10e233]:
+    - note "AI assistant" [ref=f10e234]
+    - note "After AI assistant" [ref=f10e235]

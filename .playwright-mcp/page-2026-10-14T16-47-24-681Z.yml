@@ -1,0 +1,171 @@
+- generic [active] [ref=f8e1]:
+  - generic [ref=f8e2]:
+    - region "Skip to main content":
+      - link "Skip to main content" [ref=f8e3] [cursor=pointer]:
+        - /url: "#__docusaurus_skipToContent_fallback"
+    - navigation "Main" [ref=f8e4]:
+      - generic [ref=f8e5]:
+        - generic [ref=f8e6]:
+          - link "Chargent Logo Chargent" [ref=f8e7] [cursor=pointer]:
+            - /url: /
+            - img "Chargent Logo" [ref=f8e9]
+            - generic [ref=f8e10]: Chargent
+          - link "Docs" [ref=f8e11] [cursor=pointer]:
+            - /url: /docs/docs/introduction
+          - link "REST" [ref=f8e12] [cursor=pointer]:
+            - /url: /docs/rest/introduction
+          - link "Flow" [ref=f8e13] [cursor=pointer]:
+            - /url: /docs/flow/introduction
+          - link "Apex" [ref=f8e14] [cursor=pointer]:
+            - /url: /docs/apex/introduction
+          - link "Custom Checkout" [ref=f8e15] [cursor=pointer]:
+            - /url: /docs/ccc/introduction
+          - link "Smart Payment Routing" [ref=f8e16] [cursor=pointer]:
+            - /url: /docs/spr/introduction
+        - button "Switch between dark and light mode (currently light mode)" [ref=f8e19] [cursor=pointer]
+    - generic [ref=f8e24]:
+      - complementary [ref=f8e25]:
+        - navigation "Docs sidebar" [ref=f8e28]:
+          - list [ref=f8e29]:
+            - listitem [ref=f8e30]:
+              - link "Introduction" [ref=f8e31] [cursor=pointer]:
+                - /url: /docs/docs/introduction
+            - listitem [ref=f8e32]:
+              - link "Getting Started" [ref=f8e33] [cursor=pointer]:
+                - /url: /docs/docs/getting-started
+            - listitem [ref=f8e34]:
+              - link "Status Codes and Error Responses" [ref=f8e35] [cursor=pointer]:
+                - /url: /docs/docs/status-codes-and-error-responses
+            - listitem [ref=f8e36]:
+              - link "Features" [expanded] [ref=f8e38] [cursor=pointer]:
+                - /url: "#"
+              - list [ref=f8e39]:
+                - listitem [ref=f8e40]:
+                  - link "Multiple Gateway Tokenization" [ref=f8e41] [cursor=pointer]:
+                    - /url: /docs/docs/multi-gateway-tokenization
+                - listitem [ref=f8e42]:
+                  - link "Headless Requests" [ref=f8e43] [cursor=pointer]:
+                    - /url: /docs/docs/headless
+                - listitem [ref=f8e44]:
+                  - link "Smart Payment Routing" [ref=f8e45] [cursor=pointer]:
+                    - /url: /docs/docs/smart-payment-routing
+                - listitem [ref=f8e46]:
+                  - link "Custom Checkout" [ref=f8e47] [cursor=pointer]:
+                    - /url: /docs/docs/custom-checkout
+      - main [ref=f8e48]:
+        - generic [ref=f8e50]:
+          - generic [ref=f8e52]:
+            - article [ref=f8e53]:
+              - navigation "Breadcrumbs" [ref=f8e54]:
+                - list [ref=f8e55]:
+                  - listitem [ref=f8e56]:
+                    - link "Home page" [ref=f8e57] [cursor=pointer]:
+                      - /url: /
+                  - listitem [ref=f8e60]:
+                    - generic [ref=f8e61]: Features
+                  - listitem [ref=f8e62]:
+                    - generic [ref=f8e63]: Headless Requests
+              - generic [ref=f8e64]:
+                - heading "Headless Requests" [level=1] [ref=f8e65]
+                - heading [level=2] [ref=f8e66]:
+                  - text: Overview
+                  - link "Direct link to Overview" [ref=f8e67] [cursor=pointer]:
+                    - /url: "#overview"
+                    - text: "#"
+                - paragraph [ref=f8e68]: Chargent supports headless requests to payment gateways and returns the gateway response without storing data in Salesforce. This enables you to use Chargent as a pass-through integration and create your own data storage solution.
+                - heading [level=2] [ref=f8e69]:
+                  - text: Methods
+                  - link "Direct link to Methods" [ref=f8e70] [cursor=pointer]:
+                    - /url: "#methods"
+                    - text: "#"
+                - paragraph [ref=f8e71]: Chargent supports two methods for headless requests across multiple API types.
+                - table [ref=f8e72]:
+                  - rowgroup [ref=f8e73]:
+                    - row [ref=f8e74]:
+                      - columnheader "API Type" [ref=f8e75]
+                      - columnheader "Method" [ref=f8e76]
+                      - columnheader "Definition" [ref=f8e77]
+                  - rowgroup [ref=f8e78]:
+                    - row [ref=f8e79]:
+                      - cell "REST" [ref=f8e80]
+                      - cell [ref=f8e81]:
+                        - link "Payment Method Tokenization" [ref=f8e82] [cursor=pointer]:
+                          - /url: /docs/rest/payment-method-tokenization#headless-tokenization
+                      - cell "Payment Method Tokenization is the exchange of payment data with a token representation of the data provided by the payment gateway for PCI Compliance. This is an initial step in the payments Lifecycle." [ref=f8e83]
+                    - row [ref=f8e84]:
+                      - cell "REST" [ref=f8e85]
+                      - cell [ref=f8e86]:
+                        - link "Payment Sale" [ref=f8e87] [cursor=pointer]:
+                          - /url: /docs/rest/payment-sale#headless-sale
+                      - cell "A Payment Sale will perform both a Payment Authorization and a Payment Capture in a single payment operation." [ref=f8e88]
+                    - row [ref=f8e89]:
+                      - cell "Apex" [ref=f8e90]
+                      - cell [ref=f8e91]:
+                        - link "Payment Method Tokenization" [ref=f8e92] [cursor=pointer]:
+                          - /url: /docs/apex/payment-method-tokenization#headless-tokenization
+                      - cell "Payment Method Tokenization is the exchange of payment data with a token representation of the data provided by the payment gateway for PCI Compliance. This is an initial step in the payments Lifecycle." [ref=f8e93]
+                    - row [ref=f8e94]:
+                      - cell "Apex" [ref=f8e95]
+                      - cell [ref=f8e96]:
+                        - link "Payment Sale" [ref=f8e97] [cursor=pointer]:
+                          - /url: /docs/apex/payment-sale#headless-sale
+                      - cell "A Payment Sale will perform both a Payment Authorization and a Payment Capture in a single payment operation." [ref=f8e98]
+                    - row [ref=f8e99]:
+                      - cell "Flow" [ref=f8e100]
+                      - cell [ref=f8e101]:
+                        - link "Payment Method Tokenization" [ref=f8e102] [cursor=pointer]:
+                          - /url: /docs/flow/payment-method-tokenization#headless-tokenization
+                      - cell "Payment Method Tokenization is the exchange of payment data with a token representation of the data provided by the payment gateway for PCI Compliance. This is an initial step in the payments Lifecycle." [ref=f8e103]
+                    - row [ref=f8e104]:
+                      - cell "Flow" [ref=f8e105]
+                      - cell [ref=f8e106]:
+                        - link "Payment Sale" [ref=f8e107] [cursor=pointer]:
+                          - /url: /docs/flow/payment-sale#headless-sale
+                      - cell "A Payment Sale will perform both a Payment Authorization and a Payment Capture in a single payment operation." [ref=f8e108]
+            - navigation "Docs pages" [ref=f8e109]:
+              - link "Previous « Multiple Gateway Tokenization" [ref=f8e110] [cursor=pointer]:
+                - /url: /docs/docs/multi-gateway-tokenization
+                - generic [ref=f8e111]: Previous
+                - generic [ref=f8e112]: « Multiple Gateway Tokenization
+              - link "Next Smart Payment Routing »" [ref=f8e113] [cursor=pointer]:
+                - /url: /docs/docs/smart-payment-routing
+                - generic [ref=f8e114]: Next
+                - generic [ref=f8e115]: Smart Payment Routing »
+          - list [ref=f8e118]:
+            - listitem [ref=f8e119]:
+              - link "Overview" [ref=f8e120] [cursor=pointer]:
+                - /url: "#overview"
+            - listitem [ref=f8e121]:
+              - link "Methods" [ref=f8e122] [cursor=pointer]:
+                - /url: "#methods"
+    - contentinfo [ref=f8e123]:
+      - generic [ref=f8e124]:
+        - generic [ref=f8e125]:
+          - generic [ref=f8e126]:
+            - generic [ref=f8e127]: Docs
+            - list [ref=f8e128]:
+              - listitem [ref=f8e129]:
+                - link "Getting Started" [ref=f8e130] [cursor=pointer]:
+                  - /url: /docs/docs/getting-started
+          - generic [ref=f8e131]:
+            - generic [ref=f8e132]: Community
+            - list [ref=f8e133]:
+              - listitem [ref=f8e134]:
+                - link "Knowledge Base" [ref=f8e135] [cursor=pointer]:
+                  - /url: https://appfrontier.my.site.com/kb/s/
+              - listitem [ref=f8e138]:
+                - link "Reviews" [ref=f8e139] [cursor=pointer]:
+                  - /url: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N300000016jrcEAA&tab=r
+          - generic [ref=f8e142]:
+            - generic [ref=f8e143]: More
+            - list [ref=f8e144]:
+              - listitem [ref=f8e145]:
+                - link "Website" [ref=f8e146] [cursor=pointer]:
+                  - /url: https://appfrontier.com/
+              - listitem [ref=f8e149]:
+                - link "Product Docs" [ref=f8e150] [cursor=pointer]:
+                  - /url: https://appfrontier.com/documentation
+        - generic [ref=f8e153]: Copyright © 2024 AppFrontier, LLC.
+  - generic [ref=f8e155]:
+    - note "AI assistant" [ref=f8e156]
+    - note "After AI assistant" [ref=f8e157]

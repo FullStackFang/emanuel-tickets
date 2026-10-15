@@ -1,10 +1,9 @@
 import Link from 'next/link'
-import { redirect } from 'next/navigation'
 import { SiteHeader } from '@/components/SiteHeader'
 import { EventRow } from '@/components/EventRow'
 import { StatusPill } from '@/components/StatusPill'
-import { createClient } from '@/lib/supabase/server'
 import { getHostEvents, viewOf, type EventRecord } from '@/lib/events'
+import { requireHost } from '@/lib/supabase/viewer'
 
 export const dynamic = 'force-dynamic' // a host's own draft/published list is live
 
@@ -15,20 +14,16 @@ export default async function DashboardPage({
 }: {
   searchParams: Promise<{ tab?: string }>
 }) {
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-  if (!user) redirect('/login')
+  const viewer = await requireHost()
 
   const { tab: tabParam } = await searchParams
   const tab: Tab = tabParam === 'past' ? 'past' : 'upcoming'
 
-  const events = await getHostEvents(user.id)
+  const events = await getHostEvents(viewer.userId)
   // "Ended" is the app's existing notion of past (viewOf compares starts_at to
   // now); reuse it so the dashboard and event pages agree, and to keep the
   // render free of a direct clock read.
-  const isPast = (e: EventRecord) => viewOf(e).hasEnded
+  const isPast = (e: EventRecord) => viewOf(e, { isMember: true }).hasEnded
 
   // Upcoming (and undated) soonest-first; past most-recent-first.
   const upcoming = events
@@ -72,7 +67,7 @@ export default async function DashboardPage({
             {shown.map((event) => (
               <div key={event.id} className="flex items-center gap-2">
                 <div className="min-w-0 flex-1">
-                  <EventRow event={event} muted={tab === 'past'} />
+                  <EventRow event={event} muted={tab === 'past'} hostView />
                 </div>
                 {event.status !== 'published' && (
                   <span className="shrink-0 rounded-full bg-[var(--bg-tertiary)] px-2.5 py-1 font-mono text-2xs font-semibold uppercase tracking-wide text-[var(--text-tertiary)]">

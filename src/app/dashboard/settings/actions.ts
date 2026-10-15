@@ -2,6 +2,7 @@
 
 import { revalidatePath } from 'next/cache'
 import { createClient } from '@/lib/supabase/server'
+import { getViewer } from '@/lib/supabase/viewer'
 
 export type SaveResult = { ok: true } | { ok: false; error: string }
 
@@ -19,6 +20,7 @@ export async function updateDisplayName(name: string): Promise<SaveResult> {
     data: { user },
   } = await supabase.auth.getUser()
   if (!user) return { ok: false, error: 'Your session has expired. Please sign in again.' }
+  if ((await getViewer())?.role !== 'host') return { ok: false, error: 'Only hosts can change these settings.' }
 
   const { error } = await supabase.auth.updateUser({ data: { full_name: trimmed } })
   if (error) return { ok: false, error: 'Could not save your name. Please try again.' }
@@ -38,6 +40,7 @@ export async function updateNotifications(prefs: {
     data: { user },
   } = await supabase.auth.getUser()
   if (!user) return { ok: false, error: 'Your session has expired. Please sign in again.' }
+  if ((await getViewer())?.role !== 'host') return { ok: false, error: 'Only hosts can change these settings.' }
 
   const { error } = await supabase.auth.updateUser({
     data: { notify_rsvp: prefs.notifyRsvp, notify_weekly: prefs.notifyWeekly },

@@ -4,6 +4,7 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { parseEventForm } from '@/lib/event-input'
+import { requireHost } from '@/lib/supabase/viewer'
 
 // Create-event form state. Success never returns a value: we redirect to the
 // dashboard, so the only state the client renders is a validation/DB error.
@@ -13,23 +14,30 @@ export async function createEvent(
   _prev: CreateEventState,
   formData: FormData,
 ): Promise<CreateEventState> {
+  const viewer = await requireHost()
   const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-  if (!user) redirect('/login')
 
   const parsed = parseEventForm(formData)
   if (!parsed.ok) return { ok: false, error: parsed.error }
-  const { title, description, location, category, startsAt, capacity, priceCents, publish } =
-    parsed.value
+  const {
+    title,
+    description,
+    location,
+    category,
+    startsAt,
+    capacity,
+    priceCents,
+    memberPriceCents,
+    membersOnly,
+    publish,
+  } = parsed.value
 
   // Insert the event with the RLS client: events_insert_own enforces
   // host_id = auth.uid(), so a host can never create an event owned by someone else.
   const { data: created, error: insErr } = await supabase
     .from('events')
     .insert({
-      host_id: user.id,
+      host_id: viewer.userId,
       title,
       description,
       location,
@@ -47,6 +55,8 @@ export async function createEvent(
     event_id: created.id,
     name: 'General Admission',
     price_cents: priceCents,
+    member_price_cents: memberPriceCents,
+    members_only: membersOnly,
     currency: 'usd',
     capacity,
   })

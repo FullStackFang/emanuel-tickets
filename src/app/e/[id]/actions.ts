@@ -1,14 +1,19 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
+import { redirect } from 'next/navigation'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { issueTicketsForOrder } from '@/lib/tickets'
+import { startPaidCheckout } from '@/lib/checkout'
 import { viewOf, type EventRecord } from '@/lib/event-format'
+import { planPurchase, reserveErrorMessage } from '@/lib/purchase'
+import { getViewer } from '@/lib/supabase/viewer'
+import { ensureFreshMembership } from '@/lib/membership/verify'
 
 // Same shape event data is read with elsewhere; kept local so the action stays
 // server-authoritative and never trusts values the client sent for pricing.
 const SELECT =
-  'id,title,description,location,starts_at,status,category,group_slug,ticket_types(id,name,price_cents,capacity,sold,held)'
+  'id,title,description,location,starts_at,status,category,group_slug,ticket_types(id,name,price_cents,member_price_cents,members_only,capacity,sold,held)'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const MAX_PARTY = 20
@@ -44,28 +49,35 @@ export async function rsvpToEvent(_prev: RsvpState, formData: FormData): Promise
   if (!event || event.status !== 'published')
     return { ok: false, error: 'This event is no longer available.' }
 
-  // Server-side truth for free / ended, using the same helper the page renders with.
-  const v = viewOf(event)
-  if (!v.isFree) return { ok: false, error: 'This event requires tickets, not a free RSVP.' }
-  if (v.hasEnded) return { ok: false, error: 'This event has already taken place.' }
+  if (viewOf(event).hasEnded) return { ok: false, error: 'This event has already taken place.' }
 
-  // A free event's ticket types are all $0; prefer one that can hold the whole
-  // party outright, else fall back so reserve_seat gives the definitive answer.
-  const ticket =
-    event.ticket_types.find(
-      (t) => t.price_cents === 0 && t.capacity - t.sold - t.held >= guests,
-    ) ?? event.ticket_types.find((t) => t.price_cents === 0)
-  if (!ticket) return { ok: false, error: 'No free tickets are configured for this event.' }
+  // Identity and membership come from the verified session and the membership
+  // cache, never from the form. Guests get neither.
+  const viewer = await getViewer()
+  const { isMember } = await ensureFreshMembership(viewer)
 
-  // Hold seats atomically. reserve_seat re-checks capacity under a row lock, so
-  // this is the real (oversell-safe) capacity gate — the checks above are UX.
+  // The chosen type's price for THIS viewer must be $0 to take the free path.
+  const ticketTypeId = String(formData.get('ticketTypeId') ?? '') || undefined
+  const plan = planPurchase(event.ticket_types, { path: 'rsvp', ticketTypeId, isMember, qty: guests })
+  if (!plan.ok) {
+    if (plan.statusChanged) revalidatePath(`/e/${event.id}`)
+    return { ok: false, error: plan.error }
+  }
+  const { ticket } = plan
+
+  // Hold seats atomically. reserve_seat re-checks capacity under a row lock and
+  // enforces members-only from the server's assertion — the checks above are UX.
   const { data: reservation, error: reserveErr } = await supabase.rpc('reserve_seat', {
     p_ticket_type_id: ticket.id,
     p_qty: guests,
+    p_is_member: isMember,
   })
   if (reserveErr) {
-    if (reserveErr.code === 'P0001' || reserveErr.message?.includes('insufficient_inventory'))
-      return { ok: false, error: 'Sorry — there aren’t enough spots left for that many guests.' }
+    const message = reserveErrorMessage(
+      reserveErr,
+      'Sorry — there aren’t enough spots left for that many guests.',
+    )
+    if (message) return { ok: false, error: message }
     throw reserveErr
   }
 
@@ -82,6 +94,8 @@ export async function rsvpToEvent(_prev: RsvpState, formData: FormData): Promise
       buyer_email: email,
       buyer_name: name,
       amount_cents: 0,
+      user_id: viewer?.userId ?? null,
+      member_pricing: plan.memberPricing,
       status: 'pending',
     })
     .select('id')
@@ -113,4 +127,30 @@ export async function rsvpToEvent(_prev: RsvpState, formData: FormData): Promise
   // the seats we just took.
   revalidatePath(`/e/${event.id}`)
   return { ok: true, guests, name, ticketUrl, emailed }
+}
+
+export type CheckoutState = { ok: false; error: string } | null
+
+// Paid checkout: reserve -> pending order -> provider session -> redirect. All
+// validation and pricing happen server-side in startPaidCheckout; on success the
+// buyer is sent to the provider (redirect throws, so nothing runs after it).
+export async function startCheckout(_prev: CheckoutState, formData: FormData): Promise<CheckoutState> {
+  // Buyer identity and membership are derived here from the verified session;
+  // any user id or membership claim in the form data is ignored.
+  const viewer = await getViewer()
+  const { isMember } = await ensureFreshMembership(viewer)
+  const eventId = String(formData.get('eventId') ?? '')
+  const result = await startPaidCheckout({
+    eventId,
+    ticketTypeId: String(formData.get('ticketTypeId') ?? ''),
+    qty: Number.parseInt(String(formData.get('qty') ?? '1'), 10),
+    name: String(formData.get('name') ?? ''),
+    email: String(formData.get('email') ?? ''),
+    buyer: viewer ? { userId: viewer.userId, email: viewer.email, isMember } : null,
+  })
+  if (!result.ok) {
+    if (result.statusChanged) revalidatePath(`/e/${eventId}`)
+    return { ok: false, error: result.error }
+  }
+  redirect(result.redirectUrl)
 }

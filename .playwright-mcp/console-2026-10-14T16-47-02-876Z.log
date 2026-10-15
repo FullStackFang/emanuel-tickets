@@ -1,0 +1,2 @@
+[     691ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://appfrontier.com/documentation/understanding-chargent-custom-checkout:0
+[    1259ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://aplo-evnt.com/api/v1/intent_pixel/track_request?app_id=66a2b1b5a7722602caba169d:0

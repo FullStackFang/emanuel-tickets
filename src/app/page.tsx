@@ -19,8 +19,8 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 export default async function Home() {
   const [events, groups] = await Promise.all([getPublishedEvents(), getEventGroups()])
   const now = new Date()
-  const upcoming = events.filter((e) => !viewOf(e, now).hasEnded)
-  const past = events.filter((e) => viewOf(e, now).hasEnded).reverse()
+  const upcoming = events.filter((e) => !viewOf(e, { now }).hasEnded)
+  const past = events.filter((e) => viewOf(e, { now }).hasEnded).reverse()
 
   const [featured, ...restUpcoming] = upcoming
   // Grouped events go into their group's rail; leftover (ungrouped) events show

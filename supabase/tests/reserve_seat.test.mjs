@@ -168,3 +168,41 @@ test('late payment after resale is flagged needs_refund, never oversold', async 
   const oa = await pool.query('select status, needs_refund from public.orders where id = $1', [orderA.rows[0].id])
   assert.equal(oa.rows[0].needs_refund, true, "late order flagged for refund")
 })
+
+// --- members-only assertion (migration 20261014120000_member_auth) -----------
+
+test('existing 2- and 3-argument calls still resolve to the 4-argument function', async () => {
+  const { ticketTypeId } = await seedEvent(5)
+  await pool.query('select id from public.reserve_seat($1, 1)', [ticketTypeId])
+  await pool.query('select id from public.reserve_seat($1, 1, 15)', [ticketTypeId])
+  const { rows } = await pool.query('select held from public.ticket_types where id = $1', [ticketTypeId])
+  assert.equal(rows[0].held, 2)
+})
+
+test('members-only refuses non-members with 42501 and leaves inventory untouched', async () => {
+  const { ticketTypeId } = await seedEvent(5)
+  await pool.query('update public.ticket_types set members_only = true where id = $1', [ticketTypeId])
+
+  for (const sql of [
+    'select id from public.reserve_seat($1, 1)',
+    'select id from public.reserve_seat($1, 1, 15)',
+    'select id from public.reserve_seat($1, 1, 15, false)',
+  ])
+    await assert.rejects(() => pool.query(sql, [ticketTypeId]), (e) => e.code === '42501', sql)
+
+  let { rows } = await pool.query('select held from public.ticket_types where id = $1', [ticketTypeId])
+  assert.equal(rows[0].held, 0, 'refusals do not touch inventory')
+
+  await pool.query('select id from public.reserve_seat($1, 2, 15, true)', [ticketTypeId])
+  ;({ rows } = await pool.query('select held from public.ticket_types where id = $1', [ticketTypeId]))
+  assert.equal(rows[0].held, 2)
+})
+
+test('members-only still enforces capacity for members', async () => {
+  const { ticketTypeId } = await seedEvent(1)
+  await pool.query('update public.ticket_types set members_only = true where id = $1', [ticketTypeId])
+  await assert.rejects(
+    () => pool.query('select id from public.reserve_seat($1, 2, 15, true)', [ticketTypeId]),
+    (e) => e.code === 'P0001',
+  )
+})

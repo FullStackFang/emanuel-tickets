@@ -1,0 +1,15 @@
+<!-- Attendee sign-in code. Used for BOTH the "Confirm signup" (first-time email) and
+     "Magic Link" (returning email) templates so the copy never drifts. The code is
+     the headline; the link is the secondary path and goes through /auth/confirm
+     (token_hash, works in any browser). Paste the same body into the hosted
+     project's two templates. -->
+<div style="font-family: Georgia, 'Times New Roman', serif; max-width: 480px; margin: 0 auto; padding: 24px; color: #1f2937;">
+  <p style="font-size: 16px; line-height: 1.5;">Here is your sign-in code for Emanuel Tickets:</p>
+  <p style="font-family: 'Courier New', monospace; font-size: 32px; font-weight: bold; letter-spacing: 6px; margin: 16px 0; color: #143a63;">{{ .Token }}</p>
+  <p style="font-size: 16px; line-height: 1.5;">Type it on the page where you asked for it. It works for one hour.</p>
+  <p style="font-size: 15px; line-height: 1.5;">
+    Or <a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=email&next={{ .RedirectTo }}" style="color: #016395;">tap here to sign in</a> instead.
+  </p>
+  <p style="font-size: 13px; line-height: 1.5; color: #6b7280; margin-top: 24px;">If you didn&rsquo;t ask to sign in, you can ignore this email. Nobody can sign in without the code.</p>
+  <p style="font-size: 13px; color: #6b7280;">Temple Emanu-El</p>
+</div>

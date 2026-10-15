@@ -18,6 +18,8 @@ export type EventFormValues = {
   capacity: string
   priceMode: 'free' | 'paid'
   priceAmount: string
+  memberPriceAmount: string // blank: no member price
+  membersOnly: boolean
   publish: 'published' | 'draft'
 }
 
@@ -31,6 +33,8 @@ const BLANK: EventFormValues = {
   capacity: '',
   priceMode: 'free',
   priceAmount: '',
+  memberPriceAmount: '',
+  membersOnly: false,
   publish: 'published',
 }
 
@@ -195,6 +199,36 @@ export function EventForm({
                 </span>
               </label>
             )}
+            {priceMode === 'paid' && (
+              <label className="flex flex-col gap-1.5">
+                <span className={FIELD_LABEL}>Member price (USD, optional)</span>
+                <input
+                  name="memberPriceAmount"
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  inputMode="decimal"
+                  placeholder="Same as above"
+                  defaultValue={initial.memberPriceAmount}
+                  className={`${INPUT} sm:max-w-40`}
+                />
+                <span className="text-xs text-[var(--text-tertiary)]">
+                  Signed-in members pay this instead. Enter 0 to make it free for members.
+                </span>
+              </label>
+            )}
+            <label className="flex items-center gap-2 text-sm text-[var(--text-primary)]">
+              <input
+                name="membersOnly"
+                type="checkbox"
+                defaultChecked={initial.membersOnly}
+                className="focus-ring h-4 w-4"
+              />
+              Members only
+              <span className="text-xs text-[var(--text-tertiary)]">
+                (hidden from guests and non-members)
+              </span>
+            </label>
           </fieldset>
 
           <label className="flex flex-col gap-1.5">

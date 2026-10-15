@@ -1,0 +1,449 @@
+- generic [active] [ref=f4e1]:
+  - region "Cookie Consent Prompt" [ref=f4e2]:
+    - generic [ref=f4e4]:
+      - generic [ref=f4e5]:
+        - text: We use essential cookies to make our site work. With your consent, we may also use non-essential cookies to improve user experience and analyze website traffic. By clicking “Accept,” you agree to our website's cookie use as described in our
+        - button "Cookie Policy" [ref=f4e6] [cursor=pointer]
+        - text: . You can change your cookie settings at any time by clicking “
+        - button "Preferences" [ref=f4e7] [cursor=pointer]
+        - text: .”
+      - generic [ref=f4e8]:
+        - button "Preferences" [ref=f4e9] [cursor=pointer]
+        - button "Accept" [ref=f4e10] [cursor=pointer]
+  - link "Skip to content" [ref=f4e11] [cursor=pointer]:
+    - /url: "#content"
+  - generic [ref=f4e13]:
+    - generic [ref=f4e14]:
+      - generic [ref=f4e16]:
+        - generic [ref=f4e17]:
+          - link [ref=f4e19] [cursor=pointer]:
+            - /url: https://appfrontier.com/
+          - generic:
+            - generic:
+              - generic:
+                - link "Chargent by AppFrontier Logo":
+                  - /url: https://appfrontier.com/
+                  - img "Chargent by AppFrontier Logo"
+        - navigation "Chargent Menu 2022-3" [ref=f4e23]:
+          - text:  
+          - list [ref=f4e24]:
+            - listitem [ref=f4e25]:
+              - link "Products" [ref=f4e28] [cursor=pointer]:
+                - /url: "#"
+              - button "Open submenu of Products" [ref=f4e30] [cursor=pointer]: 
+            - listitem [ref=f4e31]:
+              - link "Solutions" [ref=f4e34] [cursor=pointer]:
+                - /url: "#"
+              - button "Open submenu of Solutions" [ref=f4e36] [cursor=pointer]: 
+            - listitem [ref=f4e37]:
+              - link "Support" [ref=f4e40] [cursor=pointer]:
+                - /url: "#"
+              - button "Open submenu of Support" [ref=f4e42] [cursor=pointer]: 
+            - listitem [ref=f4e43]:
+              - link "Resources" [ref=f4e46] [cursor=pointer]:
+                - /url: "#"
+              - button "Open submenu of Resources" [ref=f4e48] [cursor=pointer]: 
+            - listitem [ref=f4e49]:
+              - link "About Us" [ref=f4e52] [cursor=pointer]:
+                - /url: "#"
+              - button "Open submenu of About Us" [ref=f4e54] [cursor=pointer]: 
+            - listitem [ref=f4e55]:
+              - link "Get Started" [ref=f4e56] [cursor=pointer]:
+                - /url: https://appfrontier.com/get-started
+            - listitem [ref=f4e58]:
+              - link "Toggle Sliding Bar" [ref=f4e61] [cursor=pointer]:
+                - /url: "#"
+                - generic [aria-hidden] [ref=f4e63]: 
+      - 'link "Simplify Self-Service: Give your customers Amazon-style payment method management in Salesforce Portals. Learn More." [ref=f4e70] [cursor=pointer]':
+        - /url: /documentation/payment-method-manager
+    - region "Page Title Bar" [ref=f4e72]:
+      - heading "Understanding Chargent Custom Checkout" [level=1] [ref=f4e77]
+    - main [ref=f4e78]:
+      - generic [ref=f4e80]:
+        - generic [ref=f4e83]:
+          - generic [ref=f4e84]:
+            - img [ref=f4e85] [cursor=pointer]
+            - textbox "Search Documentation..." [ref=f4e88]
+          - combobox [ref=f4e89]:
+            - option "All Categories" [selected]
+            - option "Using Chargent"
+            - option "Understanding Payments"
+            - option "Testing & Rollout"
+            - option "Security & Compliance"
+            - option "Reporting & Analytics"
+            - option "Release Notes & Updates"
+            - option "Partner Connectors"
+            - option "Installation & Setup"
+            - option "Getting Help"
+            - option "Experience Cloud Payments"
+            - option "Connect Your Gateway"
+            - option "Chargent Objects & Fields"
+            - option "Chargent for Developers"
+            - option "Chargent Feature Guides"
+            - option "Automate & Customize"
+        - generic [ref=f4e90]:
+          - complementary [ref=f4e91]:
+            - generic [ref=f4e98]:
+              - article [ref=f4e99]:
+                - generic [ref=f4e102] [cursor=pointer]:
+                  - heading "Installation & Setup" [level=2] [ref=f4e103]
+                  - img [aria-hidden] [ref=f4e104]: 
+              - article [ref=f4e106]:
+                - generic [ref=f4e109] [cursor=pointer]:
+                  - heading "Connect Your Gateway" [level=2] [ref=f4e110]
+                  - img [aria-hidden] [ref=f4e111]: 
+              - article [ref=f4e113]:
+                - generic [ref=f4e116] [cursor=pointer]:
+                  - heading "Testing & Rollout" [level=2] [ref=f4e117]
+                  - img [aria-hidden] [ref=f4e118]: 
+              - article [ref=f4e120]:
+                - generic [ref=f4e123] [cursor=pointer]:
+                  - heading "Using Chargent" [level=2] [ref=f4e124]
+                  - img [aria-hidden] [ref=f4e125]: 
+              - article [ref=f4e127]:
+                - generic [ref=f4e130] [cursor=pointer]:
+                  - heading "Chargent Feature Guides" [level=2] [ref=f4e131]
+                  - img [aria-hidden] [ref=f4e132]: 
+              - article [ref=f4e134]:
+                - generic [ref=f4e137] [cursor=pointer]:
+                  - heading "Experience Cloud Payments" [level=2] [ref=f4e138]
+                  - img [aria-hidden] [ref=f4e139]: 
+              - article [ref=f4e141]:
+                - generic [ref=f4e144] [cursor=pointer]:
+                  - heading "Partner Connectors" [level=2] [ref=f4e145]
+                  - img [aria-hidden] [ref=f4e146]: 
+              - article [ref=f4e148]:
+                - generic [ref=f4e151] [cursor=pointer]:
+                  - heading "Understanding Payments" [level=2] [ref=f4e152]
+                  - img [aria-hidden] [ref=f4e153]: 
+              - article [ref=f4e155]:
+                - generic [ref=f4e158] [cursor=pointer]:
+                  - heading "Security & Compliance" [level=2] [ref=f4e159]
+                  - img [aria-hidden] [ref=f4e160]: 
+              - article [ref=f4e162]:
+                - generic [ref=f4e165] [cursor=pointer]:
+                  - heading "Reporting & Analytics" [level=2] [ref=f4e166]
+                  - img [aria-hidden] [ref=f4e167]: 
+              - article [ref=f4e169]:
+                - generic [ref=f4e172] [cursor=pointer]:
+                  - heading "Automate & Customize" [level=2] [ref=f4e173]
+                  - img [aria-hidden] [ref=f4e174]: 
+              - article [ref=f4e176]:
+                - generic [ref=f4e177]:
+                  - generic [ref=f4e179] [cursor=pointer]:
+                    - heading "Chargent for Developers" [level=2] [ref=f4e180]
+                    - img [aria-hidden] [ref=f4e181]: 
+                  - list [ref=f4e184]:
+                    - listitem [ref=f4e185]:
+                      - link "Chargent for Developers" [ref=f4e193] [cursor=pointer]:
+                        - /url: https://appfrontier.com/documentation/chargent-for-developers
+                    - listitem [ref=f4e194]:
+                      - link "Chargent Payments API" [ref=f4e202] [cursor=pointer]:
+                        - /url: https://appfrontier.com/documentation/chargent-developer-api
+                    - listitem [ref=f4e203]:
+                      - link "Understanding Chargent Custom Checkout" [ref=f4e211] [cursor=pointer]:
+                        - /url: https://appfrontier.com/documentation/chargent-custom-checkout
+                    - listitem [ref=f4e212]:
+                      - link "Smart Payment Routing" [ref=f4e220] [cursor=pointer]:
+                        - /url: https://appfrontier.com/documentation/smart-payment-routing
+                    - listitem [ref=f4e221]:
+                      - link "Multi-Gateway Tokenization" [ref=f4e229] [cursor=pointer]:
+                        - /url: https://appfrontier.com/documentation/multi-gateway-tokenization
+                    - listitem [ref=f4e230]:
+                      - link "Zero Footprint Tokenization" [ref=f4e238] [cursor=pointer]:
+                        - /url: https://appfrontier.com/documentation/zero-footprint-tokenization-developer-lightning-component
+                    - listitem [ref=f4e239]:
+                      - link "Take Payment – Payment Completion Event" [ref=f4e247] [cursor=pointer]:
+                        - /url: https://appfrontier.com/documentation/take-payment-payment-completion-event
+                    - listitem [ref=f4e248]:
+                      - link "Developer Pages for Payment Request" [ref=f4e256] [cursor=pointer]:
+                        - /url: https://appfrontier.com/documentation/using-developer-pages
+              - article [ref=f4e257]:
+                - generic [ref=f4e260] [cursor=pointer]:
+                  - heading "Chargent Objects & Fields" [level=2] [ref=f4e261]
+                  - img [aria-hidden] [ref=f4e262]: 
+              - article [ref=f4e264]:
+                - generic [ref=f4e267] [cursor=pointer]:
+                  - heading "Release Notes & Updates" [level=2] [ref=f4e268]
+                  - img [aria-hidden] [ref=f4e269]: 
+              - article [ref=f4e271]:
+                - generic [ref=f4e274] [cursor=pointer]:
+                  - heading "Getting Help" [level=2] [ref=f4e275]
+                  - img [aria-hidden] [ref=f4e276]: 
+          - generic [ref=f4e279]:
+            - navigation [ref=f4e280]:
+              - list [ref=f4e281]:
+                - listitem [ref=f4e282]:
+                  - link "Home" [ref=f4e283] [cursor=pointer]:
+                    - /url: https://appfrontier.com
+                - listitem [ref=f4e284]:
+                  - img [aria-hidden] [ref=f4e286]: 
+                - listitem [ref=f4e288]:
+                  - link "Documentation" [ref=f4e289] [cursor=pointer]:
+                    - /url: https://appfrontier.com/documentation
+                - listitem [ref=f4e290]:
+                  - img [aria-hidden] [ref=f4e292]: 
+                - listitem [ref=f4e294]:
+                  - link "Chargent for Developers" [ref=f4e295] [cursor=pointer]:
+                    - /url: https://appfrontier.com/documentation-category/chargent-developer-api
+            - heading "Understanding Chargent Custom Checkout" [level=2] [ref=f4e298]
+            - generic [ref=f4e299]:
+              - generic [ref=f4e301] [cursor=pointer]
+              - generic [ref=f4e313]:
+                - paragraph [ref=f4e314]:
+                  - text: Everything your customers see and interact with should align with your company branding. Chargent Custom Checkout (CCC) allows your development team to create a fully custom front-end payment experience on your
+                  - link "Salesforce Experience Cloud Site" [ref=f4e315] [cursor=pointer]:
+                    - /url: https://help.salesforce.com/s/articleView?id=sf.networks_overview.htm&type=5
+                  - text: .
+                - paragraph [ref=f4e316]: Using CCC, you can create secure, pixel-perfect payment pages that match the look and feel of your company’s branding. Colors, fonts, spacing, and sizing can all match your site – you name it.
+                - figure [ref=f4e318]
+                - paragraph [ref=f4e319]: "Additionally, CCC includes the following functionality:"
+                - list [ref=f4e320]:
+                  - listitem [ref=f4e321]: Customize what fields are displayed or required.
+                  - listitem [ref=f4e322]:
+                    - text: Add custom error messaging to ensure that your customers know which inputs need attention
+                    - emphasis [ref=f4e323]: before
+                    - text: the payment is submitted.
+                - heading "Prerequisites" [level=2] [ref=f4e324]
+                - list [ref=f4e325]:
+                  - listitem [ref=f4e326]:
+                    - text: You must be on the latest version of Chargent to use the CCC Library, which can be installed or updated using our
+                    - link "Package Installation Manager (PIM)" [ref=f4e327] [cursor=pointer]:
+                      - /url: /chargent-installation
+                    - text: .
+                  - listitem [ref=f4e328]:
+                    - text: Chargent Custom Checkout is offered as part of Chargent’s Growth or Enterprise Editions. For more information, see our
+                    - link "Pricing Page" [ref=f4e329] [cursor=pointer]:
+                      - /url: /pricing
+                    - text: .
+                  - listitem [ref=f4e330]:
+                    - text: Chargent Custom Checkout is a pro-code solution recommended only for experienced Salesforce Developers. See our
+                    - link "Developer Documentation" [ref=f4e331] [cursor=pointer]:
+                      - /url: https://developers.appfrontier.com/docs/ccc/introduction
+                    - text: for technical guidance.
+                - heading "Take Payment vs. Chargent Custom Checkout" [level=2] [ref=f4e332]
+                - paragraph [ref=f4e333]: Chargent offers two solutions, the Take Payment component and Chargent Custom Checkout, that enable you to take payments directly from your Salesforce Community.
+                - paragraph [ref=f4e334]:
+                  - strong [ref=f4e335]: Take Payment
+                  - text: is a component designed to be set up in minutes, so no coding or developer work is required. The component works on any object and fits in any page layout. Since Take Payment is a declarative solution, you cannot change the UI’s position, colors, or style. To learn more about Take Payment,
+                  - link "see our documentation here" [ref=f4e336] [cursor=pointer]:
+                    - /url: /documentation/take-payments-lightning-web-component-lwc
+                  - text: .
+                - paragraph [ref=f4e337]:
+                  - strong [ref=f4e338]: Chargent Custom Checkout
+                  - text: is a pro-code alternative to the Chargent Take Payment component with added flexibility, allowing you to create a fully branded payment experience. CCC can also save money and customer time by allowing you to create custom error messages that prevent unproductive transaction attempts before they occur.
+                - heading "Chargent Custom Checkout Library" [level=2] [ref=f4e339]
+                - paragraph [ref=f4e340]: The CCC Library allows developers to implement a custom checkout UI while seamlessly leveraging Chargent’s functionalities. The library is available for Lightning Web Components and Visualforce Pages.
+                - paragraph [ref=f4e341]:
+                  - text: Please see our
+                  - link "Developer Guide" [ref=f4e342] [cursor=pointer]:
+                    - /url: https://developers.appfrontier.com/docs/ccc/introduction
+                  - text: for more information about the Chargent Custom Checkout Library.
+                - heading [level=3] [ref=f4e343]:
+                  - strong [ref=f4e344]: See Also
+                - paragraph [ref=f4e345]:
+                  - link "Lightning Web Components" [ref=f4e346] [cursor=pointer]:
+                    - /url: https://developer.salesforce.com/docs/component-library/documentation/en/lwc
+                  - link "What is Visualforce?" [ref=f4e347] [cursor=pointer]:
+                    - /url: https://developer.salesforce.com/docs/atlas.en-us.pages.meta/pages/pages_intro_what_is_it.htm
+                  - link "Take Payment Component" [ref=f4e348] [cursor=pointer]:
+                    - /url: /documentation/take-payments-lightning-web-component-lwc
+            - generic [ref=f4e349]:
+              - generic [ref=f4e350]:
+                - heading "Did you find this topic helpful?" [level=5] [ref=f4e352]
+                - list [ref=f4e353]:
+                  - listitem [ref=f4e354]:
+                    - link [ref=f4e355] [cursor=pointer]:
+                      - /url: "#"
+                  - listitem [ref=f4e359]:
+                    - link [ref=f4e360] [cursor=pointer]:
+                      - /url: "#"
+                  - listitem [ref=f4e363]:
+                    - link [ref=f4e364] [cursor=pointer]:
+                      - /url: "#"
+              - link [ref=f4e371] [cursor=pointer]:
+                - /url: "#betterdocs-form-modal"
+          - complementary [ref=f4e374]:
+            - generic [ref=f4e381]:
+              - generic [ref=f4e382]: Table of Contents
+              - list [ref=f4e383]:
+                - listitem [ref=f4e384]:
+                  - link "Prerequisites" [ref=f4e385] [cursor=pointer]:
+                    - /url: "#prerequisites"
+                - listitem [ref=f4e386]:
+                  - link "Take Payment vs. Chargent Custom Checkout" [ref=f4e387] [cursor=pointer]:
+                    - /url: "#take-payment-vs-chargent-custom-checkout"
+                - listitem [ref=f4e388]:
+                  - link "Chargent Custom Checkout Library" [ref=f4e389] [cursor=pointer]:
+                    - /url: "#chargent-custom-checkout-library"
+    - generic [ref=f4e391]:
+      - generic [ref=f4e395]:
+        - img "5 stars" [ref=f4e398]
+        - heading "Customer Stories" [level=4] [ref=f4e400]
+        - generic [ref=f4e402]:
+          - generic [ref=f4e403]:
+            - blockquote [ref=f4e404]:
+              - paragraph [ref=f4e406]: Whether you’re a stubborn do-it-yourself implementer like me or a professional admin/developer, their staff is very communicative and helpful. They were overly patient with my never-ending questions during the onboarding and implementation process.
+            - generic [ref=f4e407]:
+              - generic [ref=f4e408]: 
+              - strong [ref=f4e410]: Bill H.
+          - generic:
+            - blockquote:
+              - generic:
+                - paragraph: Seamless app for integrating our donations into our Salesforce platform. Excellent and responsive customer service.
+            - generic:
+              - generic: 
+              - generic:
+                - strong: Kate G.
+          - generic:
+            - blockquote:
+              - generic:
+                - paragraph: Chargent has already changed the way we do business. The reps over there have been awesome and very responsive. Thank you Chargent!
+            - generic:
+              - generic: 
+              - generic:
+                - strong: Mat K.
+          - generic:
+            - blockquote:
+              - generic:
+                - paragraph: This product is easy to use, the setup videos are really helpful, and beyond that, support is quick to respond and set up a call to review. It’s a really great product that lets me sleep at night.
+            - generic:
+              - generic: 
+              - generic:
+                - strong: Miles S.
+          - generic:
+            - blockquote:
+              - generic:
+                - paragraph: We’ve used Chargent for over 12 months now to integrate transaction information from our payment gateway into Salesforce. It does its job reliably; we haven’t had a problem since it was set up!
+            - generic:
+              - generic: 
+              - generic:
+                - strong: Anthony B.
+          - generic:
+            - blockquote:
+              - generic:
+                - paragraph: Not only does this product do everything needed for our payment processing needs, but the support team goes above and beyond to help answer any questions we may have.
+            - generic:
+              - generic: 
+              - generic:
+                - strong: Donny A.
+      - link "The top-rated payments app on the Salesforce AppExchange, with over 500 5-star reviews." [ref=f4e416] [cursor=pointer]:
+        - /url: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N300000016jrcEAA&utm_medium=website&utm_source=AppFrontier&utm_campaign=globalfooter1
+      - generic [ref=f4e419]:
+        - link "Chargent – Payments for Salesforce" [ref=f4e424] [cursor=pointer]:
+          - /url: https://appfrontier.com/
+          - img "Chargent - Payments for Salesforce" [ref=f4e425]
+        - generic [ref=f4e428]:
+          - heading "FEATURES" [level=5] [ref=f4e429]
+          - paragraph [ref=f4e430]:
+            - link "Chargent Features" [ref=f4e431] [cursor=pointer]:
+              - /url: /chargent
+            - link "Recurring Billing" [ref=f4e432] [cursor=pointer]:
+              - /url: https://appfrontier.com/salesforce-recurring-billing
+            - link "Automated Collections" [ref=f4e433] [cursor=pointer]:
+              - /url: /automated-collections
+            - link "Chargent Connectors" [ref=f4e434] [cursor=pointer]:
+              - /url: /chargent-connectors
+            - link "Payment Gateways" [ref=f4e435] [cursor=pointer]:
+              - /url: /gateways
+            - link "Chargent Trust Center" [ref=f4e436] [cursor=pointer]:
+              - /url: https://appfrontier.com/trust
+        - generic [ref=f4e439]:
+          - heading "INDUSTRIES" [level=5] [ref=f4e440]
+          - paragraph [ref=f4e441]:
+            - link "Nonprofit" [ref=f4e442] [cursor=pointer]:
+              - /url: https://appfrontier.com/blog/salesforce-donation-app
+            - link "Technology & SaaS" [ref=f4e443] [cursor=pointer]:
+              - /url: https://appfrontier.com/blog/salesforce-customer-community-payments
+            - link "Finance & Insurance" [ref=f4e444] [cursor=pointer]:
+              - /url: /finance-insurance
+            - link "Manufacturing" [ref=f4e445] [cursor=pointer]:
+              - /url: /manufacturing
+            - link "Healthcare" [ref=f4e446] [cursor=pointer]:
+              - /url: /healthcare
+            - link "Travel & Hospitality" [ref=f4e447] [cursor=pointer]:
+              - /url: /travel-hospitality
+        - generic [ref=f4e450]:
+          - heading "SUPPORT" [level=5] [ref=f4e451]
+          - paragraph [ref=f4e452]:
+            - link "Chargent Free Trial" [ref=f4e453] [cursor=pointer]:
+              - /url: /free-trial
+            - link "Installation" [ref=f4e454] [cursor=pointer]:
+              - /url: /chargent-installation
+            - link "Documentation" [ref=f4e455] [cursor=pointer]:
+              - /url: /documentation
+            - link "Knowledge Base" [ref=f4e456] [cursor=pointer]:
+              - /url: https://appfrontier.my.site.com/kb/s/
+            - link "Submit a Ticket" [ref=f4e457] [cursor=pointer]:
+              - /url: https://appfrontier.my.site.com/kb/submitcase
+        - generic [ref=f4e460]:
+          - heading "ABOUT US" [level=5] [ref=f4e461]
+          - paragraph [ref=f4e462]:
+            - link "Meet AppFrontier" [ref=f4e463] [cursor=pointer]:
+              - /url: /about
+            - link "Our Partners" [ref=f4e464] [cursor=pointer]:
+              - /url: /partners
+            - link "Chargent Careers" [ref=f4e465] [cursor=pointer]:
+              - /url: /careers
+            - link "Privacy Policy" [ref=f4e466] [cursor=pointer]:
+              - /url: /privacy
+            - link "Terms of Use" [ref=f4e467] [cursor=pointer]:
+              - /url: /terms
+            - link "Consent Preferences" [ref=f4e468] [cursor=pointer]:
+              - /url: "#"
+        - generic [ref=f4e470]:
+          - generic [ref=f4e471]:
+            - heading "LEARN MORE" [level=5] [ref=f4e472]
+            - paragraph [ref=f4e473]:
+              - link "Contact Us" [ref=f4e474] [cursor=pointer]:
+                - /url: /contact
+          - generic [ref=f4e477]:
+            - link "youtube" [ref=f4e478] [cursor=pointer]:
+              - /url: https://www.youtube.com/user/AppFrontierLLC/
+              - text: 
+            - link "linkedin" [ref=f4e479] [cursor=pointer]:
+              - /url: http://www.linkedin.com/company/appfrontier-llc
+              - text: 
+          - link "Salesforce Partner Since 2008" [ref=f4e482] [cursor=pointer]:
+            - /url: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N300000016jrcEAA&utm_medium=website&utm_source=AppFrontier&utm_campaign=globalfooter2
+            - img "Salesforce Partner Since 2008" [ref=f4e483]
+      - paragraph [ref=f4e488]: © 2012- 2026 All Rights Reserved AppFrontier LLC. AppFrontier and Chargent are trademarks of AppFrontier LLC. Salesforce, Salesforce.com, AppExchange, and others are trademarks of salesforce.com, inc. and are used here with permission
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - link "Close Sliding Bar Area ":
+                - /url: "#"
+                - generic: Close Sliding Bar Area
+                - text: 
+            - generic:
+              - generic:
+                - generic:
+                  - heading "Find More Info" [level=4]
+                  - search:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic: "Search for:"
+                          - searchbox "Search..."
+                      - generic:
+                        - button "Search": 
+                - generic:
+                  - heading "Salesforce Payments. Everywhere." [level=4]
+                  - generic:
+                    - paragraph:
+                      - text: Chargent enables you to take payments anywhere in Salesforce. Read more on the
+                      - link "Salesforce AppExchange":
+                        - /url: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N300000016jrcEAA
+                      - text: .
+                - generic:
+                  - 'img "Illustration: swirling gears and credit cards whirl around a computer monitor."'
+  - region "Go to Top":
+    - link " Go to Top":
+      - /url: "#"
+      - text: 
+      - generic: Go to Top
+  - generic [ref=f4e489]:
+    - note "AI assistant" [ref=f4e490]
+    - note "After AI assistant" [ref=f4e491]

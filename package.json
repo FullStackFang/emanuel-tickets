@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node scripts/free-port.mjs 6175",
     "dev": "next dev -p 6175",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test:unit": "node --test --experimental-strip-types \"src/lib/ticket-token.test.ts\"",
+    "test:unit": "node --test --experimental-strip-types \"src/lib/ticket-token.test.ts\" \"src/lib/payments/payments.test.ts\" \"src/lib/membership/membership.test.ts\" \"src/lib/membership/salesforce.test.ts\" \"src/lib/event-format.test.ts\" \"src/lib/purchase.test.ts\"",
     "test:db": "node --test supabase/tests/"
   },
   "dependencies": {
@@ -19,7 +20,8 @@
     "qrcode": "^1.5.4",
     "react": "19.2.8",
     "react-dom": "19.2.8",
-    "resend": "^6.28.1"
+    "resend": "^6.28.1",
+    "stripe": "^23.0.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

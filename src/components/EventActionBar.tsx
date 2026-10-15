@@ -1,38 +1,57 @@
 'use client'
 
-import { useActionState, useState } from 'react'
-import { formatPrice, type EventStatus } from '@/lib/event-format'
-import { rsvpToEvent, type RsvpState } from '@/app/e/[id]/actions'
+import { useActionState, useState, type ReactNode } from 'react'
+import { formatPrice, type EventStatus, type PurchasableType } from '@/lib/event-format'
+import {
+  rsvpToEvent,
+  startCheckout,
+  type RsvpState,
+  type CheckoutState,
+} from '@/app/e/[id]/actions'
 
 const INPUT =
   'focus-ring h-10 rounded-lg border border-[var(--border-default)] bg-[var(--bg-primary)] px-3 text-base text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)]'
 const FIELD_LABEL =
   'font-mono text-2xs font-semibold uppercase tracking-wider text-[var(--text-tertiary)]'
 
-// The RSVP / buy affordance. Free events now RSVP for real (reserve -> confirm,
-// no payment); paid checkout (reserve -> Stripe) is not built yet, so that
-// branch stays honestly stubbed. Sold-out and ended states are terminal.
+// The RSVP / buy affordance. One form lists the ticket types this viewer can buy
+// at THEIR price; the chosen type's price decides the path: $0 RSVPs (reserve ->
+// confirm, no payment), anything above collects payment via the provider. The
+// server re-derives the price either way. Sold-out and ended states are terminal.
 export function EventActionBar({
   eventId,
   status,
   isFree,
   minPriceCents,
   seatsLeft,
+  ticketTypes,
+  defaultEmail = '',
+  priceNote,
 }: {
   eventId: string
   status: EventStatus
   isFree: boolean
   minPriceCents: number
   seatsLeft: number
+  ticketTypes: PurchasableType[]
+  defaultEmail?: string // prefilled from the session when signed in; stays editable
+  priceNote?: ReactNode // member pricing line under the price (page decides the copy)
 }) {
-  const [open, setOpen] = useState(false) // free: RSVP form disclosure
-  const [noted, setNoted] = useState(false) // paid: "coming soon" stub
+  const [open, setOpen] = useState(false) // form disclosure
   const [state, formAction, pending] = useActionState<RsvpState, FormData>(rsvpToEvent, null)
+  const [payState, payAction, paying] = useActionState<CheckoutState, FormData>(startCheckout, null)
+  const options = ticketTypes.filter((t) => t.remaining > 0)
+  const [selectedId, setSelectedId] = useState(options[0]?.id ?? '')
+  const selected = options.find((t) => t.id === selectedId) ?? options[0]
+  const freeChoice = (selected?.effectivePriceCents ?? 0) === 0
 
   const priceLabel = isFree ? 'Free' : formatPrice(minPriceCents)
   const ctaLabel = isFree ? 'RSVP' : 'Get tickets'
   const actionable = status === 'available' || status === 'almost_full'
   const confirmed = !!(state && state.ok)
+  const error = freeChoice
+    ? state && !state.ok && state.error
+    : payState && !payState.ok && payState.error
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-30 border-t border-[var(--border-default)] bg-[var(--bg-primary)] shadow-[var(--shadow-lg)] sm:static sm:z-auto sm:rounded-2xl sm:border sm:border-[var(--border-default)] sm:shadow-[var(--shadow-md)]">
@@ -53,6 +72,7 @@ export function EventActionBar({
             <span className="text-lg font-semibold text-[var(--text-primary)] sm:font-display sm:text-2xl">
               {priceLabel}
             </span>
+            {priceNote}
             {actionable && !confirmed && (
               <span className="mt-0.5 flex items-center gap-1.5 text-xs text-[var(--text-tertiary)]">
                 <span className="h-1.5 w-1.5 rounded-full bg-accent-500 shadow-[0_0_0_3px_var(--color-accent-50)]" />
@@ -87,7 +107,8 @@ export function EventActionBar({
               </button>
             ) : (
               <button
-                onClick={() => setNoted(true)}
+                onClick={() => setOpen((o) => !o)}
+                aria-expanded={open}
                 className="focus-ring h-11 w-full rounded-lg bg-accent-500 px-6 text-sm font-semibold text-[var(--color-accent-900)] shadow-[var(--shadow-accent)] transition-colors hover:bg-accent-600"
               >
                 {ctaLabel}
@@ -96,9 +117,9 @@ export function EventActionBar({
           </div>
         </div>
 
-        {/* Free-event RSVP form (guest checkout: email only, no account) */}
-        {isFree && actionable && open && !confirmed && (
-          <form action={formAction} className="mt-4 grid gap-3">
+        {/* One form: the selected type's price for this viewer picks RSVP or payment */}
+        {actionable && open && !confirmed && selected && (
+          <form action={freeChoice ? formAction : payAction} className="mt-4 grid gap-3">
             <input type="hidden" name="eventId" value={eventId} />
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
               <label className="flex flex-col gap-1">
@@ -120,38 +141,90 @@ export function EventActionBar({
                   autoComplete="email"
                   inputMode="email"
                   placeholder="you@example.com"
+                  defaultValue={defaultEmail}
                   className={INPUT}
                 />
               </label>
             </div>
-            <label className="flex w-full flex-col gap-1 sm:max-w-[10rem] lg:max-w-none">
-              <span className={FIELD_LABEL}>Guests (incl. you)</span>
-              <input name="guests" type="number" min={1} max={20} defaultValue={1} className={INPUT} />
-            </label>
+            <div
+              className={
+                options.length > 1 ? 'grid gap-3 sm:grid-cols-[1fr_8rem] lg:grid-cols-[1fr_7rem]' : 'grid'
+              }
+            >
+              {options.length > 1 ? (
+                <label className="flex flex-col gap-1">
+                  <span className={FIELD_LABEL}>Ticket</span>
+                  <select
+                    name="ticketTypeId"
+                    required
+                    value={selected.id}
+                    onChange={(e) => setSelectedId(e.target.value)}
+                    className={INPUT}
+                  >
+                    {options.map((t) => (
+                      <option key={t.id} value={t.id}>
+                        {t.name} · {formatPrice(t.effectivePriceCents)}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              ) : (
+                <input type="hidden" name="ticketTypeId" value={selected.id} />
+              )}
+              <label className="flex w-full flex-col gap-1 sm:max-w-[10rem] lg:max-w-none">
+                <span className={FIELD_LABEL}>{freeChoice ? 'Guests (incl. you)' : 'Quantity'}</span>
+                <input
+                  name={freeChoice ? 'guests' : 'qty'}
+                  type="number"
+                  min={1}
+                  max={20}
+                  defaultValue={1}
+                  className={INPUT}
+                />
+              </label>
+            </div>
 
-            {state && !state.ok && (
+            {error && (
               <p
                 role="alert"
                 className="rounded-lg border border-[var(--color-error-200)] bg-[var(--color-error-50)] px-3 py-2 text-sm text-[var(--color-error-500)]"
               >
-                {state.error}
+                {error}
               </p>
             )}
 
-            <button
-              type="submit"
-              disabled={pending}
-              className="focus-ring inline-flex h-11 w-full items-center justify-center rounded-lg bg-primary-600 px-6 text-sm font-semibold text-white shadow-[var(--shadow-primary)] transition-colors hover:bg-primary-700 disabled:cursor-not-allowed disabled:opacity-70"
-            >
-              {pending ? 'Reserving…' : 'Confirm RSVP'}
-            </button>
-            <p className="text-xs text-[var(--text-tertiary)]">
-              No account needed. We use your email only to hold your spot.
-            </p>
+            {freeChoice ? (
+              <>
+                <button
+                  type="submit"
+                  disabled={pending}
+                  className="focus-ring inline-flex h-11 w-full items-center justify-center rounded-lg bg-primary-600 px-6 text-sm font-semibold text-white shadow-[var(--shadow-primary)] transition-colors hover:bg-primary-700 disabled:cursor-not-allowed disabled:opacity-70"
+                >
+                  {pending ? 'Reserving…' : 'Confirm RSVP'}
+                </button>
+                <p className="text-xs text-[var(--text-tertiary)]">
+                  No account needed. We use your email only to hold your spot.
+                </p>
+              </>
+            ) : (
+              <>
+                <button
+                  type="submit"
+                  disabled={paying}
+                  className="focus-ring inline-flex h-11 w-full items-center justify-center rounded-lg bg-accent-500 px-6 text-sm font-semibold text-[var(--color-accent-900)] shadow-[var(--shadow-accent)] transition-colors hover:bg-accent-600 disabled:cursor-not-allowed disabled:opacity-70"
+                >
+                  {paying ? 'Holding your seats…' : 'Continue to payment'}
+                </button>
+                <p className="text-xs text-[var(--text-tertiary)]">
+                  Your seats are held while you pay. Payment is handled securely by our processor;
+                  we never see your card.
+                </p>
+              </>
+            )}
           </form>
         )}
 
-        {/* Free-event confirmation — a single gold sheen on the moment it lands */}
+        {/* RSVP confirmation — a single gold sheen on the moment it lands */}
         {state && state.ok && (
           <div
             role="status"
@@ -174,16 +247,6 @@ export function EventActionBar({
               </a>
             )}
           </div>
-        )}
-
-        {/* Paid checkout: not built yet */}
-        {noted && !isFree && (
-          <p
-            role="status"
-            className="mt-4 rounded-lg bg-primary-50 px-3 py-2 text-sm text-[var(--text-brand)]"
-          >
-            Online ticketing is coming shortly. Check back soon to reserve your place.
-          </p>
         )}
       </div>
     </div>

@@ -25,17 +25,26 @@ export async function updateSession(request: NextRequest) {
     },
   )
 
-  // IMPORTANT: do not run code between createServerClient and getUser() — it can
+  // IMPORTANT: do not run code between createServerClient and getClaims() — it can
   // cause hard-to-debug session-refresh bugs.
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  const { data, error } = await supabase.auth.getClaims()
+  if (error) {
+    // Refused refresh (e.g. the hook's staff 403): treat as signed out and clear
+    // the auth cookies on this response so the browser does not keep retrying.
+    await supabase.auth.signOut({ scope: 'local' }).catch(() => {})
+  }
+  const claims = error ? null : data?.claims
+  const role = (claims?.app_metadata as { app_role?: string } | undefined)?.app_role
 
-  // Host area requires a signed-in user.
-  if (!user && request.nextUrl.pathname.startsWith('/dashboard')) {
+  // Host area requires a host session: members go home, signed-out to /login.
+  if (request.nextUrl.pathname.startsWith('/dashboard') && role !== 'host') {
     const url = request.nextUrl.clone()
-    url.pathname = '/login'
-    return NextResponse.redirect(url)
+    url.pathname = claims?.sub ? '/' : '/login'
+    url.search = ''
+    const redirectResponse = NextResponse.redirect(url)
+    // Carry any refreshed/cleared auth cookies onto the redirect.
+    supabaseResponse.cookies.getAll().forEach((c) => redirectResponse.cookies.set(c))
+    return redirectResponse
   }
 
   // Return supabaseResponse as-is so refreshed auth cookies reach the browser.

@@ -17,6 +17,8 @@ export type ParsedEvent = {
   startsAt: string
   capacity: number
   priceCents: number
+  memberPriceCents: number | null // null: same price for everyone
+  membersOnly: boolean
   publish: boolean
 }
 
@@ -71,6 +73,18 @@ export function parseEventForm(
     priceCents = Math.round(dollars * 100)
   }
 
+  // Member price only means something on a paid ticket (a free one is free for all).
+  let memberPriceCents: number | null = null
+  const memberRaw = String(formData.get('memberPriceAmount') ?? '').trim()
+  if (priceMode === 'paid' && memberRaw) {
+    const dollars = Number.parseFloat(memberRaw)
+    const cents = Math.round(dollars * 100)
+    if (!Number.isFinite(dollars) || cents < 0 || Math.abs(dollars * 100 - cents) > 1e-6)
+      return { ok: false, error: 'Member price must be $0 or more, in dollars and cents.' }
+    memberPriceCents = cents
+  }
+  const membersOnly = formData.get('membersOnly') === 'on'
+
   return {
     ok: true,
     value: {
@@ -81,6 +95,8 @@ export function parseEventForm(
       startsAt,
       capacity,
       priceCents,
+      memberPriceCents,
+      membersOnly,
       publish,
     },
   }

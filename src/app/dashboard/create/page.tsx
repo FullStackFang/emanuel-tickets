@@ -1,18 +1,13 @@
 import Link from 'next/link'
-import { redirect } from 'next/navigation'
 import type { Metadata } from 'next'
 import { SiteHeader } from '@/components/SiteHeader'
-import { createClient } from '@/lib/supabase/server'
 import { CreateEventForm } from './CreateEventForm'
+import { requireHost } from '@/lib/supabase/viewer'
 
 export const metadata: Metadata = { title: 'Create event · Emanuel Tickets' }
 
 export default async function CreateEventPage() {
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-  if (!user) redirect('/login')
+  await requireHost()
 
   return (
     <>

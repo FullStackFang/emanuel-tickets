@@ -1,0 +1,270 @@
+- generic [active] [ref=f2e1]:
+  - region "Cookie Consent Prompt" [ref=f2e2]:
+    - generic [ref=f2e4]:
+      - generic [ref=f2e5]:
+        - text: We use essential cookies to make our site work. With your consent, we may also use non-essential cookies to improve user experience and analyze website traffic. By clicking “Accept,” you agree to our website's cookie use as described in our
+        - button "Cookie Policy" [ref=f2e6] [cursor=pointer]
+        - text: . You can change your cookie settings at any time by clicking “
+        - button "Preferences" [ref=f2e7] [cursor=pointer]
+        - text: .”
+      - generic [ref=f2e8]:
+        - button "Preferences" [ref=f2e9] [cursor=pointer]
+        - button "Accept" [ref=f2e10] [cursor=pointer]
+  - link "Skip to content" [ref=f2e11] [cursor=pointer]:
+    - /url: "#content"
+  - generic [ref=f2e13]:
+    - generic [ref=f2e14]:
+      - generic [ref=f2e16]:
+        - generic [ref=f2e17]:
+          - link [ref=f2e19] [cursor=pointer]:
+            - /url: https://appfrontier.com/
+          - generic:
+            - generic:
+              - generic:
+                - link "Chargent by AppFrontier Logo":
+                  - /url: https://appfrontier.com/
+                  - img "Chargent by AppFrontier Logo"
+        - navigation "Chargent Menu 2022-3" [ref=f2e23]:
+          - text:  
+          - list [ref=f2e24]:
+            - listitem [ref=f2e25]:
+              - link "Products" [ref=f2e28] [cursor=pointer]:
+                - /url: "#"
+              - button "Open submenu of Products" [ref=f2e30] [cursor=pointer]: 
+            - listitem [ref=f2e31]:
+              - link "Solutions" [ref=f2e34] [cursor=pointer]:
+                - /url: "#"
+              - button "Open submenu of Solutions" [ref=f2e36] [cursor=pointer]: 
+            - listitem [ref=f2e37]:
+              - link "Support" [ref=f2e40] [cursor=pointer]:
+                - /url: "#"
+              - button "Open submenu of Support" [ref=f2e42] [cursor=pointer]: 
+            - listitem [ref=f2e43]:
+              - link "Resources" [ref=f2e46] [cursor=pointer]:
+                - /url: "#"
+              - button "Open submenu of Resources" [ref=f2e48] [cursor=pointer]: 
+            - listitem [ref=f2e49]:
+              - link "About Us" [ref=f2e52] [cursor=pointer]:
+                - /url: "#"
+              - button "Open submenu of About Us" [ref=f2e54] [cursor=pointer]: 
+            - listitem [ref=f2e55]:
+              - link "Get Started" [ref=f2e56] [cursor=pointer]:
+                - /url: https://appfrontier.com/get-started
+            - listitem [ref=f2e58]:
+              - link "Toggle Sliding Bar" [ref=f2e61] [cursor=pointer]:
+                - /url: "#"
+                - generic [aria-hidden] [ref=f2e63]: 
+      - 'link "Simplify Self-Service: Give your customers Amazon-style payment method management in Salesforce Portals. Learn More." [ref=f2e70] [cursor=pointer]':
+        - /url: /documentation/payment-method-manager
+    - region "Page Title Bar" [ref=f2e72]:
+      - heading "Error 404 Page" [level=1] [ref=f2e77]
+    - main [ref=f2e78]:
+      - generic [ref=f2e82]:
+        - heading "Oops, This Page Could Not Be Found!" [level=2] [ref=f2e84]
+        - generic:
+          - generic:
+            - generic [ref=f2e86]: "404"
+            - generic [ref=f2e88]:
+              - heading "Helpful Links" [level=3] [ref=f2e89]
+              - list [ref=f2e90]:
+                - listitem [ref=f2e91]:
+                  - generic [aria-hidden] [ref=f2e93]: 
+                  - link "Chargent Products" [ref=f2e95] [cursor=pointer]:
+                    - /url: https://appfrontier.com/chargent
+                - listitem [ref=f2e96]:
+                  - generic [aria-hidden] [ref=f2e98]: 
+                  - link "Chargent Installation & Updates" [ref=f2e100] [cursor=pointer]:
+                    - /url: https://appfrontier.com/chargent-installation
+                - listitem [ref=f2e101]:
+                  - generic [aria-hidden] [ref=f2e103]: 
+                  - link "Chargent Free Trial" [ref=f2e105] [cursor=pointer]:
+                    - /url: https://appfrontier.com/free-trial
+                - listitem [ref=f2e106]:
+                  - generic [aria-hidden] [ref=f2e108]: 
+                  - link "Documentation" [ref=f2e110] [cursor=pointer]:
+                    - /url: https://appfrontier.com/documentation
+                - listitem [ref=f2e111]:
+                  - generic [aria-hidden] [ref=f2e113]: 
+                  - link "Chargent Careers" [ref=f2e115] [cursor=pointer]:
+                    - /url: https://appfrontier.com/careers
+                - listitem [ref=f2e116]:
+                  - generic [aria-hidden] [ref=f2e118]: 
+                  - link "Contact Us" [ref=f2e120] [cursor=pointer]:
+                    - /url: https://appfrontier.com/contact
+            - generic [ref=f2e121]:
+              - heading "Search Our Website" [level=3] [ref=f2e122]
+              - paragraph [ref=f2e123]: Can't find what you need? Take a moment and do a search below!
+              - search [ref=f2e125]:
+                - generic [ref=f2e126]:
+                  - generic [ref=f2e128]:
+                    - generic [ref=f2e129]: "Search for:"
+                    - searchbox "Search..." [ref=f2e130]
+                  - button "Search" [ref=f2e132] [cursor=pointer]: 
+    - generic [ref=f2e134]:
+      - generic [ref=f2e138]:
+        - img "5 stars" [ref=f2e141]
+        - heading "Customer Stories" [level=4] [ref=f2e143]
+        - generic [ref=f2e145]:
+          - generic [ref=f2e146]:
+            - blockquote [ref=f2e147]:
+              - paragraph [ref=f2e149]: Whether you’re a stubborn do-it-yourself implementer like me or a professional admin/developer, their staff is very communicative and helpful. They were overly patient with my never-ending questions during the onboarding and implementation process.
+            - generic [ref=f2e150]:
+              - generic [ref=f2e151]: 
+              - strong [ref=f2e153]: Bill H.
+          - generic:
+            - blockquote:
+              - generic:
+                - paragraph: Seamless app for integrating our donations into our Salesforce platform. Excellent and responsive customer service.
+            - generic:
+              - generic: 
+              - generic:
+                - strong: Kate G.
+          - generic:
+            - blockquote:
+              - generic:
+                - paragraph: Chargent has already changed the way we do business. The reps over there have been awesome and very responsive. Thank you Chargent!
+            - generic:
+              - generic: 
+              - generic:
+                - strong: Mat K.
+          - generic:
+            - blockquote:
+              - generic:
+                - paragraph: This product is easy to use, the setup videos are really helpful, and beyond that, support is quick to respond and set up a call to review. It’s a really great product that lets me sleep at night.
+            - generic:
+              - generic: 
+              - generic:
+                - strong: Miles S.
+          - generic:
+            - blockquote:
+              - generic:
+                - paragraph: We’ve used Chargent for over 12 months now to integrate transaction information from our payment gateway into Salesforce. It does its job reliably; we haven’t had a problem since it was set up!
+            - generic:
+              - generic: 
+              - generic:
+                - strong: Anthony B.
+          - generic:
+            - blockquote:
+              - generic:
+                - paragraph: Not only does this product do everything needed for our payment processing needs, but the support team goes above and beyond to help answer any questions we may have.
+            - generic:
+              - generic: 
+              - generic:
+                - strong: Donny A.
+      - link "The top-rated payments app on the Salesforce AppExchange, with over 500 5-star reviews." [ref=f2e159] [cursor=pointer]:
+        - /url: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N300000016jrcEAA&utm_medium=website&utm_source=AppFrontier&utm_campaign=globalfooter1
+      - generic [ref=f2e162]:
+        - link "Chargent – Payments for Salesforce" [ref=f2e167] [cursor=pointer]:
+          - /url: https://appfrontier.com/
+          - img "Chargent - Payments for Salesforce" [ref=f2e168]
+        - generic [ref=f2e171]:
+          - heading "FEATURES" [level=5] [ref=f2e172]
+          - paragraph [ref=f2e173]:
+            - link "Chargent Features" [ref=f2e174] [cursor=pointer]:
+              - /url: /chargent
+            - link "Recurring Billing" [ref=f2e175] [cursor=pointer]:
+              - /url: https://appfrontier.com/salesforce-recurring-billing
+            - link "Automated Collections" [ref=f2e176] [cursor=pointer]:
+              - /url: /automated-collections
+            - link "Chargent Connectors" [ref=f2e177] [cursor=pointer]:
+              - /url: /chargent-connectors
+            - link "Payment Gateways" [ref=f2e178] [cursor=pointer]:
+              - /url: /gateways
+            - link "Chargent Trust Center" [ref=f2e179] [cursor=pointer]:
+              - /url: https://appfrontier.com/trust
+        - generic [ref=f2e182]:
+          - heading "INDUSTRIES" [level=5] [ref=f2e183]
+          - paragraph [ref=f2e184]:
+            - link "Nonprofit" [ref=f2e185] [cursor=pointer]:
+              - /url: https://appfrontier.com/blog/salesforce-donation-app
+            - link "Technology & SaaS" [ref=f2e186] [cursor=pointer]:
+              - /url: https://appfrontier.com/blog/salesforce-customer-community-payments
+            - link "Finance & Insurance" [ref=f2e187] [cursor=pointer]:
+              - /url: /finance-insurance
+            - link "Manufacturing" [ref=f2e188] [cursor=pointer]:
+              - /url: /manufacturing
+            - link "Healthcare" [ref=f2e189] [cursor=pointer]:
+              - /url: /healthcare
+            - link "Travel & Hospitality" [ref=f2e190] [cursor=pointer]:
+              - /url: /travel-hospitality
+        - generic [ref=f2e193]:
+          - heading "SUPPORT" [level=5] [ref=f2e194]
+          - paragraph [ref=f2e195]:
+            - link "Chargent Free Trial" [ref=f2e196] [cursor=pointer]:
+              - /url: /free-trial
+            - link "Installation" [ref=f2e197] [cursor=pointer]:
+              - /url: /chargent-installation
+            - link "Documentation" [ref=f2e198] [cursor=pointer]:
+              - /url: /documentation
+            - link "Knowledge Base" [ref=f2e199] [cursor=pointer]:
+              - /url: https://appfrontier.my.site.com/kb/s/
+            - link "Submit a Ticket" [ref=f2e200] [cursor=pointer]:
+              - /url: https://appfrontier.my.site.com/kb/submitcase
+        - generic [ref=f2e203]:
+          - heading "ABOUT US" [level=5] [ref=f2e204]
+          - paragraph [ref=f2e205]:
+            - link "Meet AppFrontier" [ref=f2e206] [cursor=pointer]:
+              - /url: /about
+            - link "Our Partners" [ref=f2e207] [cursor=pointer]:
+              - /url: /partners
+            - link "Chargent Careers" [ref=f2e208] [cursor=pointer]:
+              - /url: /careers
+            - link "Privacy Policy" [ref=f2e209] [cursor=pointer]:
+              - /url: /privacy
+            - link "Terms of Use" [ref=f2e210] [cursor=pointer]:
+              - /url: /terms
+            - link "Consent Preferences" [ref=f2e211] [cursor=pointer]:
+              - /url: "#"
+        - generic [ref=f2e213]:
+          - generic [ref=f2e214]:
+            - heading "LEARN MORE" [level=5] [ref=f2e215]
+            - paragraph [ref=f2e216]:
+              - link "Contact Us" [ref=f2e217] [cursor=pointer]:
+                - /url: /contact
+          - generic [ref=f2e220]:
+            - link "youtube" [ref=f2e221] [cursor=pointer]:
+              - /url: https://www.youtube.com/user/AppFrontierLLC/
+              - text: 
+            - link "linkedin" [ref=f2e222] [cursor=pointer]:
+              - /url: http://www.linkedin.com/company/appfrontier-llc
+              - text: 
+          - link "Salesforce Partner Since 2008" [ref=f2e225] [cursor=pointer]:
+            - /url: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N300000016jrcEAA&utm_medium=website&utm_source=AppFrontier&utm_campaign=globalfooter2
+            - img "Salesforce Partner Since 2008" [ref=f2e226]
+      - paragraph [ref=f2e231]: © 2012- 2026 All Rights Reserved AppFrontier LLC. AppFrontier and Chargent are trademarks of AppFrontier LLC. Salesforce, Salesforce.com, AppExchange, and others are trademarks of salesforce.com, inc. and are used here with permission
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - link "Close Sliding Bar Area ":
+                - /url: "#"
+                - generic: Close Sliding Bar Area
+                - text: 
+            - generic:
+              - generic:
+                - generic:
+                  - heading "Find More Info" [level=4]
+                  - search:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic: "Search for:"
+                          - searchbox "Search..."
+                      - generic:
+                        - button "Search": 
+                - generic:
+                  - heading "Salesforce Payments. Everywhere." [level=4]
+                  - generic:
+                    - paragraph:
+                      - text: Chargent enables you to take payments anywhere in Salesforce. Read more on the
+                      - link "Salesforce AppExchange":
+                        - /url: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N300000016jrcEAA
+                      - text: .
+                - generic:
+                  - 'img "Illustration: swirling gears and credit cards whirl around a computer monitor."'
+  - region "Go to Top":
+    - link " Go to Top":
+      - /url: "#"
+      - text: 
+      - generic: Go to Top

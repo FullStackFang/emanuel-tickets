@@ -40,8 +40,8 @@ export default async function GroupPage({ params }: { params: Promise<{ slug: st
     getEventGroups(),
   ])
   const now = new Date()
-  const upcoming = events.filter((e) => !viewOf(e, now).hasEnded)
-  const past = events.filter((e) => viewOf(e, now).hasEnded).reverse()
+  const upcoming = events.filter((e) => !viewOf(e, { now }).hasEnded)
+  const past = events.filter((e) => viewOf(e, { now }).hasEnded).reverse()
 
   const accent = group.accent ?? 'var(--color-primary-600)'
 

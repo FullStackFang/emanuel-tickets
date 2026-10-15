@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { notFound, redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { SiteHeader } from '@/components/SiteHeader'
 import { EventForm, type EventFormValues } from '@/components/EventForm'
@@ -7,6 +7,7 @@ import { createClient } from '@/lib/supabase/server'
 import { nyInputParts } from '@/lib/event-format'
 import { NO_LIMIT } from '@/lib/event-input'
 import { updateEvent } from './actions'
+import { requireHost } from '@/lib/supabase/viewer'
 
 export const metadata: Metadata = { title: 'Edit event · Emanuel Tickets' }
 export const dynamic = 'force-dynamic' // a host's own draft/published event is live
@@ -21,6 +22,8 @@ type EditRow = {
   category: string | null
   ticket_types: {
     price_cents: number
+    member_price_cents: number | null
+    members_only: boolean
     capacity: number
     sold: number
     held: number
@@ -30,21 +33,18 @@ type EditRow = {
 
 export default async function EditEventPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
+  const viewer = await requireHost()
   const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-  if (!user) redirect('/login')
 
   // host_id filter (belt and suspenders over RLS) so a published event owned by
   // someone else is never editable here.
   const { data, error } = await supabase
     .from('events')
     .select(
-      'id,title,description,location,starts_at,status,category,ticket_types(price_cents,capacity,sold,held,created_at)',
+      'id,title,description,location,starts_at,status,category,ticket_types(price_cents,member_price_cents,members_only,capacity,sold,held,created_at)',
     )
     .eq('id', id)
-    .eq('host_id', user.id)
+    .eq('host_id', viewer.userId)
     .maybeSingle()
   if (error) throw error
   const event = data as EditRow | null
@@ -64,6 +64,8 @@ export default async function EditEventPage({ params }: { params: Promise<{ id: 
     capacity: tt && tt.capacity !== NO_LIMIT ? String(tt.capacity) : '',
     priceMode: tt && tt.price_cents > 0 ? 'paid' : 'free',
     priceAmount: tt && tt.price_cents > 0 ? String(tt.price_cents / 100) : '',
+    memberPriceAmount: tt?.member_price_cents != null ? String(tt.member_price_cents / 100) : '',
+    membersOnly: tt?.members_only ?? false,
     publish: event.status === 'published' ? 'published' : 'draft',
   }
 

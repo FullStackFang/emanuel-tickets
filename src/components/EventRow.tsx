@@ -12,8 +12,17 @@ import {
 const DIM = 'linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.35))'
 
 // A list row with a small stained-glass "date chip" in the event's own hues.
-export function EventRow({ event, muted = false }: { event: EventRecord; muted?: boolean }) {
-  const v = viewOf(event)
+// `hostView` shows full inventory (members-only types included) on host surfaces.
+export function EventRow({
+  event,
+  muted = false,
+  hostView = false,
+}: {
+  event: EventRecord
+  muted?: boolean
+  hostView?: boolean
+}) {
+  const v = viewOf(event, { isMember: hostView })
   const { month, day } = dateParts(event.starts_at)
 
   return (

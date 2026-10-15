@@ -16,7 +16,7 @@
 - [x] 2.4 `NEXT_PUBLIC_SITE_URL` in `.env.local` set to `https://emanuel-tickets.vercel.app`
 - [ ] 2.5 Vercel env: set Production `NEXT_PUBLIC_SITE_URL` to `https://emanuel-tickets.vercel.app` (dashboard; MCP token lacks production env permission)
 - [ ] 2.6 Supabase Auth URL Configuration: Site URL to `https://emanuel-tickets.vercel.app`; add `https://emanuel-tickets.vercel.app/auth/callback` to Redirect URLs; keep older entries until cutover is verified
-- [ ] 2.7 Commit the rename alone and push to `main`, triggering a production build
+- [x] 2.7 Commit the rename alone and push to `main` (11bb767); production build succeeded and serves "Emanuel Tickets"
 - [ ] 2.8 Verify Microsoft sign-in round-trip and a ticket email link on the new domain
 - [ ] 2.9 After verification: redirect `v0-emanuel-gather.vercel.app` and `emanuel-events-hub.vercel.app` to the canonical domain (308) and drop them from Supabase Redirect URLs
 - [ ] 2.10 Developer renames local folder `emanuel-gather/` to `emanuel-tickets/` (outside a running session)

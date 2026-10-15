@@ -1,0 +1,205 @@
+- generic [ref=f6e2]:
+  - region "Skip to main content":
+    - link "Skip to main content" [ref=f6e3] [cursor=pointer]:
+      - /url: "#__docusaurus_skipToContent_fallback"
+  - navigation "Main" [ref=f6e4]:
+    - generic [ref=f6e5]:
+      - generic [ref=f6e6]:
+        - link "Chargent Logo Chargent" [ref=f6e7] [cursor=pointer]:
+          - /url: /
+          - img "Chargent Logo" [ref=f6e9]
+          - generic [ref=f6e10]: Chargent
+        - link "Docs" [ref=f6e11] [cursor=pointer]:
+          - /url: /docs/docs/introduction
+        - link "REST" [ref=f6e12] [cursor=pointer]:
+          - /url: /docs/rest/introduction
+        - link "Flow" [ref=f6e13] [cursor=pointer]:
+          - /url: /docs/flow/introduction
+        - link "Apex" [ref=f6e14] [cursor=pointer]:
+          - /url: /docs/apex/introduction
+        - link "Custom Checkout" [ref=f6e15] [cursor=pointer]:
+          - /url: /docs/ccc/introduction
+        - link "Smart Payment Routing" [ref=f6e16] [cursor=pointer]:
+          - /url: /docs/spr/introduction
+      - button "Switch between dark and light mode (currently light mode)" [ref=f6e19] [cursor=pointer]
+  - generic [ref=f6e24]:
+    - complementary [ref=f6e25]:
+      - navigation "Docs sidebar" [ref=f6e28]:
+        - list [ref=f6e29]:
+          - listitem [ref=f6e30]:
+            - link "Introduction" [ref=f6e31] [cursor=pointer]:
+              - /url: /docs/rest/introduction
+          - listitem [ref=f6e32]:
+            - link "Getting Started" [ref=f6e34] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=f6e35]:
+            - link "Chargent Orders" [ref=f6e37] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=f6e38]:
+            - link "Payment Methods" [ref=f6e40] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=f6e41]:
+            - link "Chargent Transactions" [ref=f6e43] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=f6e44]:
+            - link "Payment Request" [ref=f6e45] [cursor=pointer]:
+              - /url: /docs/rest/payment-request
+    - main [ref=f6e46]:
+      - generic [ref=f6e48]:
+        - generic [ref=f6e50]:
+          - article [ref=f6e51]:
+            - navigation "Breadcrumbs" [ref=f6e52]:
+              - list [ref=f6e53]:
+                - listitem [ref=f6e54]:
+                  - link "Home page" [ref=f6e55] [cursor=pointer]:
+                    - /url: /
+                - listitem [ref=f6e58]:
+                  - generic [ref=f6e59]: Introduction
+            - generic [ref=f6e60]:
+              - heading "Introduction" [level=1] [ref=f6e61]
+              - heading [level=2] [ref=f6e62]:
+                - text: Overview
+                - link "Direct link to Overview" [ref=f6e63] [cursor=pointer]:
+                  - /url: "#overview"
+                  - text: "#"
+              - paragraph [ref=f6e64]: Chargent REST API is a payment processing solution that helps businesses accept and process payments online.
+              - heading [level=3] [ref=f6e65]:
+                - text: Objects
+                - link "Direct link to Objects" [ref=f6e66] [cursor=pointer]:
+                  - /url: "#objects"
+                  - text: "#"
+              - paragraph [ref=f6e67]: There are six objects involved in Chargent REST API requests and responses.
+              - table [ref=f6e68]:
+                - rowgroup [ref=f6e69]:
+                  - row [ref=f6e70]:
+                    - columnheader "Object" [ref=f6e71]
+                    - columnheader "Definition" [ref=f6e72]
+                - rowgroup [ref=f6e73]:
+                  - row [ref=f6e74]:
+                    - cell [ref=f6e75]:
+                      - link "Chargent Order" [ref=f6e76] [cursor=pointer]:
+                        - /url: https://appfrontier.com/documentation/chargent-order-fields
+                    - cell "Chargent Orders contain information related to the order such as billing information, total amount, due balance, and charge amount. They are central objects to payments lifecycle management." [ref=f6e77]
+                  - row [ref=f6e78]:
+                    - cell [ref=f6e79]:
+                      - link "Payment Gateway" [ref=f6e80] [cursor=pointer]:
+                        - /url: https://appfrontier.com/documentation/gateway-fields
+                    - cell "Payment Gateways track all the configuration settings that Chargent will use to proccess the payments and send requests to the gateway." [ref=f6e81]
+                  - row [ref=f6e82]:
+                    - cell "Payment Method" [ref=f6e83]
+                    - cell "Payment Methods are items that may be used to make or take payment." [ref=f6e84]
+                  - row [ref=f6e85]:
+                    - cell "Token" [ref=f6e86]
+                    - cell "Tokens are the strings used to represent the payment instrument account details at the gateway or other payment service provider. Payment tokens replace sensitive payment account data with a different data called a “token” and the token strings cannot be decrypted." [ref=f6e87]
+                  - row [ref=f6e88]:
+                    - cell [ref=f6e89]:
+                      - link "Chargent Transaction" [ref=f6e90] [cursor=pointer]:
+                        - /url: https://appfrontier.com/documentation/chargent-transaction-fields
+                    - cell "Transactions record the results of the requests made to the payment gateway on the Chargent Order. Transactions are also used to make additional requests in the payments lifecycle." [ref=f6e91]
+                  - row [ref=f6e92]:
+                    - cell "Log" [ref=f6e93]
+                    - cell "The Chargent Log object retains the history of actions taken in Chargent." [ref=f6e94]
+              - heading [level=3] [ref=f6e95]:
+                - text: Payments Lifecycle
+                - link "Direct link to Payments Lifecycle" [ref=f6e96] [cursor=pointer]:
+                  - /url: "#payments-lifecycle"
+                  - text: "#"
+              - paragraph [ref=f6e97]: "Businesses have many different needs for payment processing workflows. The general sequence of operations to create a successful payment Sale operation includes the following five steps:"
+              - list [ref=f6e98]:
+                - listitem [ref=f6e99]: Create Payment Gateway
+                - listitem [ref=f6e100]: Create Payment Method
+                - listitem [ref=f6e101]: Create Chargent Order
+                - listitem [ref=f6e102]: Create Payment Authorization
+                - listitem [ref=f6e103]: Create Payment Capture
+              - paragraph [ref=f6e104]: Many varitions on this workflow exist, and this sequence may also be followed with additional operations, such as Void and Refund. Additionally, a Sale operation combines an Authorization and Capture into a single payment operation.
+              - heading [level=2] [ref=f6e105]:
+                - text: Headless Requests
+                - link "Direct link to Headless Requests" [ref=f6e106] [cursor=pointer]:
+                  - /url: "#headless-requests"
+                  - text: "#"
+              - paragraph [ref=f6e107]: Add the Chargent-Headless HTTP Header to the POST request and Chargent will not store payment gateway response data in Salesforce.
+              - heading [level=3] [ref=f6e108]:
+                - text: Methods
+                - link "Direct link to Methods" [ref=f6e109] [cursor=pointer]:
+                  - /url: "#methods"
+                  - text: "#"
+              - paragraph [ref=f6e110]: Chargent supports two methods for headless requests.
+              - table [ref=f6e111]:
+                - rowgroup [ref=f6e112]:
+                  - row [ref=f6e113]:
+                    - columnheader "Method" [ref=f6e114]
+                    - columnheader "Definition" [ref=f6e115]
+                - rowgroup [ref=f6e116]:
+                  - row [ref=f6e117]:
+                    - cell [ref=f6e118]:
+                      - link "Payment Method Tokenization" [ref=f6e119] [cursor=pointer]:
+                        - /url: /docs/rest/payment-method-tokenization#headless-tokenization
+                    - cell "Payment Method Tokenization is the exchange of payment data for a token representation provided by the payment gateway for PCI Compliance. This is an initial step in the payments lifecycle." [ref=f6e120]
+                  - row [ref=f6e121]:
+                    - cell [ref=f6e122]:
+                      - link "Payment Sale" [ref=f6e123] [cursor=pointer]:
+                        - /url: /docs/rest/payment-sale#headless-sale
+                    - cell "Payment Sale will perform both a Payment Authorization and a Payment Capture in a single payment operation request." [ref=f6e124]
+              - heading [level=2] [ref=f6e125]:
+                - text: Learn More
+                - link "Direct link to Learn More" [ref=f6e126] [cursor=pointer]:
+                  - /url: "#learn-more"
+                  - text: "#"
+              - paragraph [ref=f6e127]:
+                - text: Learn more about
+                - link "Headless Requests" [ref=f6e128] [cursor=pointer]:
+                  - /url: /docs/docs/headless
+          - navigation "Docs pages" [ref=f6e129]:
+            - link "Next Authentication »" [ref=f6e130] [cursor=pointer]:
+              - /url: /docs/rest/authentication
+              - generic [ref=f6e131]: Next
+              - generic [ref=f6e132]: Authentication »
+        - list [ref=f6e135]:
+          - listitem [ref=f6e136]:
+            - link "Overview" [ref=f6e137] [cursor=pointer]:
+              - /url: "#overview"
+            - list [ref=f6e138]:
+              - listitem [ref=f6e139]:
+                - link "Objects" [ref=f6e140] [cursor=pointer]:
+                  - /url: "#objects"
+              - listitem [ref=f6e141]:
+                - link "Payments Lifecycle" [ref=f6e142] [cursor=pointer]:
+                  - /url: "#payments-lifecycle"
+          - listitem [ref=f6e143]:
+            - link "Headless Requests" [ref=f6e144] [cursor=pointer]:
+              - /url: "#headless-requests"
+            - list [ref=f6e145]:
+              - listitem [ref=f6e146]:
+                - link "Methods" [ref=f6e147] [cursor=pointer]:
+                  - /url: "#methods"
+          - listitem [ref=f6e148]:
+            - link "Learn More" [ref=f6e149] [cursor=pointer]:
+              - /url: "#learn-more"
+  - contentinfo [ref=f6e150]:
+    - generic [ref=f6e151]:
+      - generic [ref=f6e152]:
+        - generic [ref=f6e153]:
+          - generic [ref=f6e154]: Docs
+          - list [ref=f6e155]:
+            - listitem [ref=f6e156]:
+              - link "Getting Started" [ref=f6e157] [cursor=pointer]:
+                - /url: /docs/docs/getting-started
+        - generic [ref=f6e158]:
+          - generic [ref=f6e159]: Community
+          - list [ref=f6e160]:
+            - listitem [ref=f6e161]:
+              - link "Knowledge Base" [ref=f6e162] [cursor=pointer]:
+                - /url: https://appfrontier.my.site.com/kb/s/
+            - listitem [ref=f6e165]:
+              - link "Reviews" [ref=f6e166] [cursor=pointer]:
+                - /url: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N300000016jrcEAA&tab=r
+        - generic [ref=f6e169]:
+          - generic [ref=f6e170]: More
+          - list [ref=f6e171]:
+            - listitem [ref=f6e172]:
+              - link "Website" [ref=f6e173] [cursor=pointer]:
+                - /url: https://appfrontier.com/
+            - listitem [ref=f6e176]:
+              - link "Product Docs" [ref=f6e177] [cursor=pointer]:
+                - /url: https://appfrontier.com/documentation
+      - generic [ref=f6e180]: Copyright © 2024 AppFrontier, LLC.
