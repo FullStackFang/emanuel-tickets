@@ -47,21 +47,30 @@ test('viewOf prices for the viewer: members free, guests $25', () => {
   assert.equal(member.purchasableTypes[0].regularPriceCents, 2500)
 })
 
-test('members-only types and seats are hidden from non-members', () => {
+test('members-only types are listed for non-members but not purchasable or counted', () => {
   const e = event([
     tt({ id: 'ga', capacity: 5, sold: 5 }),
     tt({ id: 'mo', members_only: true, capacity: 8, sold: 2 }),
   ])
   const guest = viewOf(e)
   assert.deepEqual(guest.purchasableTypes.map((t) => t.id), ['ga'])
+  assert.deepEqual(guest.membersOnlyTypes.map((t) => t.id), ['mo'])
   assert.equal(guest.availableSeats, 0)
   assert.equal(guest.capacity, 5)
-  assert.equal(guest.status, 'sold_out')
+  assert.equal(guest.status, 'members_only', 'only members-only seats remain: not "sold out"')
 
   const member = viewOf(e, { isMember: true })
   assert.deepEqual(member.purchasableTypes.map((t) => t.id), ['ga', 'mo'])
+  assert.deepEqual(member.membersOnlyTypes, [])
   assert.equal(member.availableSeats, 6)
   assert.equal(member.status, 'available')
+})
+
+test('members-only seats are excluded from a non-member’s spots left', () => {
+  const e = event([tt({ id: 'ga', capacity: 10, sold: 0 }), tt({ id: 'mo', members_only: true, capacity: 50 })])
+  assert.equal(viewOf(e).availableSeats, 10)
+  assert.equal(viewOf(e).status, 'available')
+  assert.equal(viewOf(event([tt({ id: 'mo', members_only: true, sold: 99, capacity: 99 })])).status, 'sold_out')
 })
 
 test('viewOf still honors an injected clock', () => {

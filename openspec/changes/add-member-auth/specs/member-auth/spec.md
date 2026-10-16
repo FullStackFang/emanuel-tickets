@@ -5,12 +5,12 @@ An attendee SHALL be able to sign in by entering their email address and the one
 
 #### Scenario: Sign in by typing the code
 - **WHEN** an attendee enters their email on the sign-in page and then enters the code from the email on that same page
-- **THEN** an authenticated member session is established
+- **THEN** an authenticated attendee session is established
 - **AND** the attendee is returned to the page they came from (or the home page if none)
 
 #### Scenario: Sign in by opening the link in a different browser
 - **WHEN** an attendee requests a code in one browser and opens the emailed link in a different browser (for example a mail app's in-app browser)
-- **THEN** an authenticated member session is established in the browser that opened the link
+- **THEN** an authenticated attendee session is established in the browser that opened the link
 
 #### Scenario: Wrong or expired code
 - **WHEN** an attendee enters a code that is incorrect or expired
@@ -22,16 +22,16 @@ An attendee SHALL be able to sign in by entering their email address and the one
 - **THEN** the attendee is returned to the home page after sign-in instead
 
 ### Requirement: Session role is derived from the authentication method
-Every session SHALL carry a role of `host` or `member` in its verified access token. The role SHALL be `host` only when the session was established through Microsoft (Azure Entra ID) OAuth by a user holding a Microsoft identity; every other session SHALL be `member`. The role SHALL be derived at token issuance from the session's authentication method, SHALL persist across token refresh, and SHALL NOT be read from user-editable metadata.
+Every session SHALL carry a role of `host` or `attendee` in its verified access token. The role SHALL be `host` only when the session was established through Microsoft (Azure Entra ID) OAuth by a user holding a Microsoft identity; every other session SHALL be `attendee`. The role SHALL be derived at token issuance from the session's authentication method, SHALL persist across token refresh, and SHALL NOT be read from user-editable metadata.
 
 #### Scenario: Microsoft sign-in yields a host session
 - **WHEN** a user completes Microsoft OAuth sign-in
 - **THEN** the issued access token carries the `host` role
 - **AND** the role is still `host` after the token is refreshed
 
-#### Scenario: Email-code sign-in yields a member session
+#### Scenario: Email-code sign-in yields an attendee session
 - **WHEN** a user completes email one-time-code sign-in
-- **THEN** the issued access token carries the `member` role
+- **THEN** the issued access token carries the `attendee` role
 
 #### Scenario: Existing host sessions gain the role on refresh
 - **WHEN** the role mechanism is enabled while a host has an active Microsoft-established session

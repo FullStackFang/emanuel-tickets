@@ -62,7 +62,7 @@ export function meshFor(id: string): string {
   return MESHES[h % MESHES.length]
 }
 
-export type EventStatus = 'available' | 'almost_full' | 'sold_out' | 'ended'
+export type EventStatus = 'available' | 'almost_full' | 'sold_out' | 'members_only' | 'ended'
 
 // A ticket type as offered to one viewer, at that viewer's price.
 export type PurchasableType = {
@@ -77,6 +77,7 @@ export type PurchasableType = {
 
 export type EventView = {
   purchasableTypes: PurchasableType[]
+  membersOnlyTypes: PurchasableType[] // listed for non-members, never reservable by them
   availableSeats: number
   capacity: number
   minPriceCents: number
@@ -87,15 +88,16 @@ export type EventView = {
 
 const ALMOST_FULL_FRACTION = 0.1 // <=10% seats left reads as "almost full"
 
-// Availability and pricing as seen by one viewer. Members-only types (and their
-// seats) are invisible to non-members. Host surfaces pass { isMember: true } so a
-// host always sees full inventory for their own event.
+// Availability and pricing as seen by one viewer. Members-only types are listed
+// for everyone (membersOnlyTypes) but are purchasable only by members, and their
+// seats never count toward a non-member's availability. When only members-only
+// seats remain, a non-member sees `members_only` rather than "sold out". Host
+// surfaces pass { isMember: true } so a host always sees full inventory.
 export function viewOf(
   event: EventRecord,
   { isMember = false, now = new Date() }: { isMember?: boolean; now?: Date } = {},
 ): EventView {
-  const visible = event.ticket_types.filter((t) => isMember || !t.members_only)
-  const purchasableTypes: PurchasableType[] = visible.map((t) => ({
+  const toView = (t: TicketType): PurchasableType => ({
     id: t.id,
     name: t.name,
     effectivePriceCents: effectivePriceCents(t, isMember),
@@ -103,7 +105,10 @@ export function viewOf(
     memberPriceCents: t.member_price_cents,
     membersOnly: t.members_only,
     remaining: Math.max(t.capacity - t.sold - t.held, 0),
-  }))
+  })
+  const visible = event.ticket_types.filter((t) => isMember || !t.members_only)
+  const purchasableTypes = visible.map(toView)
+  const membersOnlyTypes = isMember ? [] : event.ticket_types.filter((t) => t.members_only).map(toView)
   const capacity = visible.reduce((n, t) => n + t.capacity, 0)
   const availableSeats = purchasableTypes.reduce((n, t) => n + t.remaining, 0)
   const prices = purchasableTypes.map((t) => t.effectivePriceCents)
@@ -113,12 +118,13 @@ export function viewOf(
 
   let status: EventStatus
   if (hasEnded) status = 'ended'
-  else if (availableSeats <= 0) status = 'sold_out'
+  else if (availableSeats <= 0)
+    status = membersOnlyTypes.some((t) => t.remaining > 0) ? 'members_only' : 'sold_out'
   else if (capacity > 0 && availableSeats <= Math.ceil(capacity * ALMOST_FULL_FRACTION))
     status = 'almost_full'
   else status = 'available'
 
-  return { purchasableTypes, availableSeats, capacity, minPriceCents, isFree, hasEnded, status }
+  return { purchasableTypes, membersOnlyTypes, availableSeats, capacity, minPriceCents, isFree, hasEnded, status }
 }
 
 export function formatPrice(cents: number): string {

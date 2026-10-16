@@ -59,7 +59,7 @@ function Steps({ next, linkError, restart }: { next: string; linkError?: string;
       <input type="hidden" name="email" value={email} />
       <p className="text-sm text-[var(--text-secondary)]">
         We sent a code to <strong className="text-[var(--text-primary)]">{email}</strong>. It may take a
-        minute to arrive.
+        minute to arrive and works for 10 minutes. You can ask for a new code after 60 seconds.
       </p>
       <label className="grid gap-1.5">
         <span className="text-sm font-semibold text-[var(--text-secondary)]">6-digit code</span>

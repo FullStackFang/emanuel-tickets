@@ -30,7 +30,7 @@ async function inTx(fn) {
     ])
     await c.query(
       `insert into auth.identities (provider_id, user_id, identity_data, provider)
-       values ($1::text, $1, jsonb_build_object('sub', $1::text), 'azure')`,
+       values ($1::text, $1::uuid, jsonb_build_object('sub', $1::text), 'azure')`,
       [ids.h],
     )
     ids.ev = (await c.query(
@@ -72,9 +72,9 @@ async function rejects(c, sql, params, code) {
   await c.query('rollback to savepoint s')
 }
 
-test('member session: no event writes, no drafts, no orders/attendees/memberships', async () => {
+test('attendee session: no event writes, no drafts, no orders/attendees/memberships', async () => {
   await inTx(async (c, { m, ev }) => {
-    await as(c, m, 'member')
+    await as(c, m, 'attendee')
     await rejects(c, `insert into public.events (host_id, title) values ($1, 'x')`, [m], '42501')
     assert.equal(await count(c, `select count(*) n from public.events where id = $1`, [ev]), 0)
     assert.equal(await count(c, `select count(*) n from public.orders where event_id = $1`, [ev]), 0)
@@ -114,7 +114,7 @@ test('access token hook: role from amr, staff refused off Microsoft', async () =
         }),
       ])).rows[0].r
     assert.equal((await hook(h, 'oauth')).claims.app_metadata.app_role, 'host')
-    assert.equal((await hook(m, 'otp')).claims.app_metadata.app_role, 'member')
+    assert.equal((await hook(m, 'otp')).claims.app_metadata.app_role, 'attendee')
     for (const method of ['otp', 'recovery', 'password'])
       assert.equal((await hook(h, method)).error.http_code, 403, method)
     assert.equal((await hook(h, 'token_refresh')).claims.app_metadata.app_role, 'host')

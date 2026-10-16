@@ -1,7 +1,7 @@
 ## MODIFIED Requirements
 
 ### Requirement: Event management requires an authenticated host session
-Creating, editing, publishing, or deleting an event and its ticket types SHALL require a session whose verified access token carries the `host` role, which is issued only for sessions established through Microsoft (Azure Entra ID) OAuth. Unauthenticated requests SHALL be denied. Authenticated requests whose session carries the `member` role SHALL be denied at both the application layer and the database layer, and SHALL NOT reach the host dashboard.
+Creating, editing, publishing, or deleting an event and its ticket types SHALL require a session whose verified access token carries the `host` role, which is issued only for sessions established through Microsoft (Azure Entra ID) OAuth. Unauthenticated requests SHALL be denied. Authenticated requests whose session carries the `attendee` role SHALL be denied at both the application layer and the database layer, and SHALL NOT reach the host dashboard.
 
 #### Scenario: Unauthenticated event management is denied
 - **WHEN** a request without a valid session attempts to create or edit an event
@@ -9,7 +9,7 @@ Creating, editing, publishing, or deleting an event and its ticket types SHALL r
 - **AND** no event data is changed
 
 #### Scenario: Member session cannot manage events
-- **WHEN** a request with a valid `member` session attempts to create or edit an event, including directly against the database API
+- **WHEN** a request with a valid `attendee` session attempts to create or edit an event, including directly against the database API
 - **THEN** the request is denied
 - **AND** no event data is changed
 

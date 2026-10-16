@@ -4,9 +4,10 @@ import { createClient } from '@/lib/supabase/server'
 
 // Who is signed in, and as what. The role is stamped into the access token by the
 // custom access token hook (supabase/migrations/20261014120000_member_auth.sql):
-// `host` only for Microsoft-OAuth sessions of staff accounts, `member` otherwise.
+// `host` only for Microsoft-OAuth sessions of staff accounts, `attendee` otherwise
+// (any other claim, including the pre-rename `member`, also maps to `attendee`).
 // Read from the verified JWT via getClaims(); user_metadata is never consulted.
-export type ViewerRole = 'host' | 'member'
+export type ViewerRole = 'host' | 'attendee'
 export type Viewer = { userId: string; email: string; role: ViewerRole }
 
 type AppClaims = {
@@ -31,11 +32,11 @@ export const getViewer = cache(async (): Promise<Viewer | null> => {
   return {
     userId: claims.sub,
     email: claims.email ?? '',
-    role: claims.app_metadata?.app_role === 'host' ? 'host' : 'member',
+    role: claims.app_metadata?.app_role === 'host' ? 'host' : 'attendee',
   }
 })
 
-// Gate for host-only pages and actions: members go home, signed-out visitors to /login.
+// Gate for host-only pages and actions: attendees go home, signed-out visitors to /login.
 export async function requireHost(): Promise<Viewer> {
   const viewer = await getViewer()
   if (!viewer) redirect('/login')

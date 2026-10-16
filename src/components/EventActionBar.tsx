@@ -27,6 +27,7 @@ export function EventActionBar({
   ticketTypes,
   defaultEmail = '',
   priceNote,
+  membersOnlyTypes = [],
 }: {
   eventId: string
   status: EventStatus
@@ -36,6 +37,7 @@ export function EventActionBar({
   ticketTypes: PurchasableType[]
   defaultEmail?: string // prefilled from the session when signed in; stays editable
   priceNote?: ReactNode // member pricing line under the price (page decides the copy)
+  membersOnlyTypes?: PurchasableType[] // listed as "For members"; never selectable here
 }) {
   const [open, setOpen] = useState(false) // form disclosure
   const [state, formAction, pending] = useActionState<RsvpState, FormData>(rsvpToEvent, null)
@@ -45,7 +47,7 @@ export function EventActionBar({
   const selected = options.find((t) => t.id === selectedId) ?? options[0]
   const freeChoice = (selected?.effectivePriceCents ?? 0) === 0
 
-  const priceLabel = isFree ? 'Free' : formatPrice(minPriceCents)
+  const priceLabel = status === 'members_only' ? 'For members' : isFree ? 'Free' : formatPrice(minPriceCents)
   const ctaLabel = isFree ? 'RSVP' : 'Get tickets'
   const actionable = status === 'available' || status === 'almost_full'
   const confirmed = !!(state && state.ok)
@@ -86,12 +88,12 @@ export function EventActionBar({
               <span className="block text-sm font-medium text-[var(--text-tertiary)] sm:py-1">
                 This event has ended
               </span>
-            ) : status === 'sold_out' ? (
+            ) : status === 'sold_out' || status === 'members_only' ? (
               <button
                 disabled
                 className="h-11 w-full cursor-not-allowed rounded-lg bg-[var(--color-neutral-200)] px-6 text-sm font-semibold text-[var(--text-tertiary)]"
               >
-                Sold out
+                {status === 'sold_out' ? 'Sold out' : 'For members'}
               </button>
             ) : confirmed ? (
               <span className="block text-sm font-semibold text-[var(--text-brand)] sm:py-1">
@@ -116,6 +118,22 @@ export function EventActionBar({
             )}
           </div>
         </div>
+
+        {/* Members-only types: listed so non-members know they exist; the price note says what to do */}
+        {membersOnlyTypes.length > 0 && status !== 'ended' && (
+          <ul className="mt-3 grid gap-1.5 border-t border-[var(--border-subtle)] pt-3 text-sm">
+            {membersOnlyTypes.map((t) => (
+              <li key={t.id} className="flex items-baseline justify-between gap-3">
+                <span className="text-[var(--text-secondary)]">
+                  {t.name} · {formatPrice(t.memberPriceCents ?? t.regularPriceCents)}
+                </span>
+                <span className="flex-none font-mono text-2xs font-semibold uppercase tracking-wide text-[var(--color-accent-900)]">
+                  For members
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
 
         {/* One form: the selected type's price for this viewer picks RSVP or payment */}
         {actionable && open && !confirmed && selected && (

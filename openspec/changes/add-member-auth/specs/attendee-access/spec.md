@@ -12,11 +12,11 @@ Reservations, orders, order items, attendee records, and membership records SHAL
 - **THEN** no rows are returned
 
 #### Scenario: A member cannot read attendee or order data
-- **WHEN** a client with a `member` session queries the attendees or orders tables directly, including for an event whose `host_id` equals their own user id
+- **WHEN** a client with a `attendee` session queries the attendees or orders tables directly, including for an event whose `host_id` equals their own user id
 - **THEN** no rows are returned
 
 #### Scenario: A member cannot read membership records directly
-- **WHEN** a client with a `member` session queries the memberships table
+- **WHEN** a client with a `attendee` session queries the memberships table
 - **THEN** no rows are returned, including their own
 
 ## ADDED Requirements
@@ -25,11 +25,11 @@ Reservations, orders, order items, attendee records, and membership records SHAL
 Every database policy that lets a host read unpublished events, or create, update, or delete events and ticket types, SHALL require the session's `host` role in addition to ownership. An authenticated session without the `host` role SHALL be limited to reading published events and their ticket types.
 
 #### Scenario: Member cannot create an event via the database API
-- **WHEN** a client with a `member` session inserts an event row with `host_id` set to its own user id
+- **WHEN** a client with a `attendee` session inserts an event row with `host_id` set to its own user id
 - **THEN** the insert is denied by the database
 
 #### Scenario: Member cannot read draft events
-- **WHEN** a client with a `member` session selects events
+- **WHEN** a client with a `attendee` session selects events
 - **THEN** only published events are returned, even if a draft row's `host_id` equals their user id
 
 #### Scenario: Host policies still work for hosts

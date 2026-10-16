@@ -15,3 +15,10 @@ export interface MembershipProvider {
   readonly id: string
   lookup(input: { email: string }): Promise<MembershipResult> // throws on transport failure
 }
+
+// Misconfiguration (bad credentials, unknown field, missing env): retrying cannot
+// help, so the verifier fails fast and logs it distinctly. Never carries an email
+// or a provider response body.
+export class MembershipConfigError extends Error {
+  readonly name = 'MembershipConfigError'
+}

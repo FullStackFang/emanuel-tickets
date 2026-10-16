@@ -4,13 +4,13 @@ import { hostProfileFrom } from '@/lib/host'
 import { AccountMenu } from '@/components/AccountMenu'
 import { MemberBadge } from '@/components/MemberBits'
 import { getViewer } from '@/lib/supabase/viewer'
-import { getMembership } from '@/lib/membership/verify'
+import { getMembership, membershipDisplay } from '@/lib/membership/verify'
 import { signOut } from '@/app/actions/auth'
 
 // Masthead top bar with the wordmark and a gold hairline rule. Reads the auth
 // session: signed-out visitors get a quiet "Host sign in" link; a signed-in host
 // gets their account menu (Your events / Profile & settings / Sign out); a
-// signed-in member gets their email, a Member badge when active, and Sign out —
+// signed-in attendee gets their email, a Member badge when active, and Sign out —
 // never host navigation. Every page that renders this is already `force-dynamic`,
 // so the per-request session read costs no caching. `wide` matches the broader
 // explore/listing pages so the wordmark stays aligned.
@@ -24,7 +24,8 @@ export async function SiteHeader({ wide = false }: { wide?: boolean }) {
     } = await supabase.auth.getUser()
     profile = user ? hostProfileFrom(user) : null
   }
-  const membership = viewer?.role === 'member' ? await getMembership(viewer.userId) : null
+  const isMember =
+    viewer?.role === 'attendee' && membershipDisplay(await getMembership(viewer.userId), viewer.email) === 'active'
 
   return (
     <header className="bg-[var(--bg-primary)]">
@@ -45,12 +46,12 @@ export async function SiteHeader({ wide = false }: { wide?: boolean }) {
               initials={profile.initials}
               avatarUrl={profile.avatarUrl}
             />
-          ) : viewer?.role === 'member' ? (
+          ) : viewer?.role === 'attendee' ? (
             <div className="flex min-w-0 items-center gap-3 text-sm">
               <span className="hidden truncate text-[var(--text-secondary)] sm:inline">
                 {viewer.email}
               </span>
-              {membership?.status === 'active' && <MemberBadge />}
+              {isMember && <MemberBadge />}
               <form action={signOut}>
                 <button
                   type="submit"

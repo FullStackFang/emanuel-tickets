@@ -5,16 +5,15 @@ import type { ReactNode } from 'react'
 import { SiteHeader } from '@/components/SiteHeader'
 import { StatusPill } from '@/components/StatusPill'
 import { EventActionBar } from '@/components/EventActionBar'
-import { MemberBadge, MismatchNote } from '@/components/MemberBits'
+import { MemberBadge, MemberPrompt } from '@/components/MemberBits'
 import { getEvent } from '@/lib/events'
 import { getViewer } from '@/lib/supabase/viewer'
-import { getMembership } from '@/lib/membership/verify'
+import { getMembership, membershipDisplay } from '@/lib/membership/verify'
 import {
   meshFor,
   viewOf,
   formatEventDate,
   formatEventTime,
-  formatPrice,
   dateParts,
 } from '@/lib/event-format'
 
@@ -119,14 +118,18 @@ export default async function EventPage({ params }: { params: Promise<{ id: stri
   if (!event) notFound()
 
   // Display uses the cached membership; the purchase path re-checks when stale.
+  // Hosts get no membership state (and so no member prompts).
   const viewer = await getViewer()
-  const membership = viewer ? await getMembership(viewer.userId) : null
-  const isMember = membership?.status === 'active'
+  const shown =
+    viewer?.role === 'attendee' ? membershipDisplay(await getMembership(viewer.userId), viewer.email) : null
+  const isMember = shown === 'active'
   const v = viewOf(event, { isMember })
   const memberPrices = event.ticket_types
     .map((t) => t.member_price_cents)
     .filter((c): c is number => c != null)
-  const hasMemberOffer = memberPrices.length > 0 || event.ticket_types.some((t) => t.members_only)
+  const membersOnly = event.ticket_types.some((t) => t.members_only)
+  const hasMemberOffer = memberPrices.length > 0 || membersOnly
+  const promptState = !viewer ? 'guest' : shown === 'lapsed' || shown === 'not_found' ? shown : null
   const { month, day } = dateParts(event.starts_at)
   const time = formatEventTime(event.starts_at)
 
@@ -199,22 +202,18 @@ export default async function EventPage({ params }: { params: Promise<{ id: stri
               seatsLeft={v.availableSeats}
               ticketTypes={v.purchasableTypes}
               defaultEmail={viewer?.email}
+              membersOnlyTypes={v.membersOnlyTypes}
               priceNote={
                 !hasMemberOffer ? null : isMember ? (
                   <MemberBadge className="mt-1 self-start" label="Member pricing" />
-                ) : viewer ? (
-                  <MismatchNote status={membership?.status} />
-                ) : (
-                  <span className="mt-0.5 text-sm text-[var(--text-secondary)]">
-                    {memberPrices.length > 0 && <>Members: {formatPrice(Math.min(...memberPrices))} · </>}
-                    <Link
-                      href={`/signin?next=${encodeURIComponent(`/e/${event.id}`)}`}
-                      className="focus-ring rounded font-medium text-[var(--text-brand)] underline underline-offset-4"
-                    >
-                      Sign in with your email
-                    </Link>
-                  </span>
-                )
+                ) : promptState ? (
+                  <MemberPrompt
+                    state={promptState}
+                    eventId={event.id}
+                    memberPriceCents={memberPrices.length > 0 ? Math.min(...memberPrices) : undefined}
+                    membersOnly={membersOnly}
+                  />
+                ) : null
               }
             />
           </div>
